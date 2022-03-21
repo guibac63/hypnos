@@ -17,9 +17,9 @@ class Client
 
     #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'clients')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    private $user;
 
-    #[ORM\OneToMany(mappedBy: 'client_id', targetEntity: Reservation::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Reservation::class, orphanRemoval: true)]
     private $reservations;
 
     public function __construct()
@@ -34,12 +34,12 @@ class Client
 
     public function getUserId(): ?user
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?user $user_id): self
+    public function setUserId(?user $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

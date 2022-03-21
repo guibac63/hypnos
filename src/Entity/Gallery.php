@@ -18,7 +18,7 @@ class Gallery
 
     #[ORM\ManyToOne(targetEntity: Suite::class, inversedBy: 'galleries')]
     #[ORM\JoinColumn(nullable: false)]
-    private $suite_id;
+    private $suite;
 
     public function getId(): ?int
     {
@@ -39,12 +39,12 @@ class Gallery
 
     public function getSuiteId(): ?Suite
     {
-        return $this->suite_id;
+        return $this->suite;
     }
 
-    public function setSuiteId(?Suite $suite_id): self
+    public function setSuiteId(?Suite $suite): self
     {
-        $this->suite_id = $suite_id;
+        $this->suite = $suite;
 
         return $this;
     }

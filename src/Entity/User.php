@@ -35,16 +35,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime')]
     private $creation_date;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Client::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Client::class, orphanRemoval: true)]
     private $clients;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Manager::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Manager::class, orphanRemoval: true)]
     private $managers;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Administrator::class, orphanRemoval: true)]
+    private $administrators;
 
     public function __construct()
     {
         $this->clients = new ArrayCollection();
         $this->managers = new ArrayCollection();
+        $this->administrators = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -226,6 +230,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($manager->getUserId() === $this) {
                 $manager->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Administrator>
+     */
+    public function getAdministrators(): Collection
+    {
+        return $this->administrators;
+    }
+
+    public function addAdministrator(Administrator $administrator): self
+    {
+        if (!$this->administrators->contains($administrator)) {
+            $this->administrators[] = $administrator;
+            $administrator->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdministrator(Administrator $administrator): self
+    {
+        if ($this->administrators->removeElement($administrator)) {
+            // set the owning side to null (unless already changed)
+            if ($administrator->getUser() === $this) {
+                $administrator->setUser(null);
             }
         }
 

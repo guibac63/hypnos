@@ -15,11 +15,15 @@ class Administrator
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToMany(mappedBy: 'admin_id', targetEntity: Manager::class)]
+    #[ORM\OneToMany(mappedBy: 'admin', targetEntity: Manager::class)]
     private $managers;
 
-    #[ORM\OneToMany(mappedBy: 'admin_id', targetEntity: Etablissement::class)]
+    #[ORM\OneToMany(mappedBy: 'admin', targetEntity: Etablissement::class)]
     private $etablissements;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'administrators')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
 
     public function __construct()
     {
@@ -88,6 +92,18 @@ class Administrator
                 $etablissement->setAdminId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

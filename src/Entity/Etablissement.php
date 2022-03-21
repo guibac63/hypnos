@@ -35,13 +35,13 @@ class Etablissement
 
     #[ORM\ManyToOne(targetEntity: Administrator::class, inversedBy: 'etablissements')]
     #[ORM\JoinColumn(nullable: false)]
-    private $admin_id;
+    private $admin;
 
     #[ORM\OneToOne(inversedBy: 'etablissement', targetEntity: Manager::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private $manager_id;
+    private $manager;
 
-    #[ORM\OneToMany(mappedBy: 'etablissement_id', targetEntity: Suite::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'etablissement', targetEntity: Suite::class, orphanRemoval: true)]
     private $suites;
 
     public function __construct()
@@ -128,24 +128,24 @@ class Etablissement
 
     public function getAdminId(): ?Administrator
     {
-        return $this->admin_id;
+        return $this->admin;
     }
 
-    public function setAdminId(?Administrator $admin_id): self
+    public function setAdminId(?Administrator $admin): self
     {
-        $this->admin_id = $admin_id;
+        $this->admin = $admin_id;
 
         return $this;
     }
 
     public function getManagerId(): ?Manager
     {
-        return $this->manager_id;
+        return $this->manager;
     }
 
-    public function setManagerId(Manager $manager_id): self
+    public function setManagerId(Manager $manager): self
     {
-        $this->manager_id = $manager_id;
+        $this->manager = $manager;
 
         return $this;
     }

@@ -32,16 +32,16 @@ class Suite
 
     #[ORM\ManyToOne(targetEntity: Etablissement::class, inversedBy: 'suites')]
     #[ORM\JoinColumn(nullable: false)]
-    private $etablissement_id;
+    private $etablissement;
 
     #[ORM\ManyToOne(targetEntity: Manager::class, inversedBy: 'suites')]
     #[ORM\JoinColumn(nullable: false)]
-    private $manager_id;
+    private $manager;
 
-    #[ORM\OneToMany(mappedBy: 'suite_id', targetEntity: Gallery::class)]
+    #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Gallery::class)]
     private $galleries;
 
-    #[ORM\OneToMany(mappedBy: 'suite_id', targetEntity: Reservation::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Reservation::class, orphanRemoval: true)]
     private $reservations;
 
     public function __construct()
@@ -117,24 +117,24 @@ class Suite
 
     public function getEtablissementId(): ?Etablissement
     {
-        return $this->etablissement_id;
+        return $this->etablissement;
     }
 
-    public function setEtablissementId(?Etablissement $etablissement_id): self
+    public function setEtablissementId(?Etablissement $etablissement): self
     {
-        $this->etablissement_id = $etablissement_id;
+        $this->etablissement = $etablissement;
 
         return $this;
     }
 
     public function getManagerId(): ?Manager
     {
-        return $this->manager_id;
+        return $this->manager;
     }
 
-    public function setManagerId(?Manager $manager_id): self
+    public function setManagerId(?Manager $manager): self
     {
-        $this->manager_id = $manager_id;
+        $this->manager = $manager;
 
         return $this;
     }
