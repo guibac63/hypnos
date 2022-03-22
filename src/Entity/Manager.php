@@ -15,7 +15,7 @@ class Manager
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'managers')]
+    #[ORM\ManyToOne(targetEntity: User::class,cascade: ['persist', 'remove'], inversedBy: 'managers')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 

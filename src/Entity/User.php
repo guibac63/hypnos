@@ -35,13 +35,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime')]
     private $creation_date;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Client::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Client::class,cascade: ['persist', 'remove'], orphanRemoval: true)]
     private $clients;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Manager::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Manager::class,cascade: ['persist', 'remove'], orphanRemoval: true)]
     private $managers;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Administrator::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Administrator::class,cascade: ['persist', 'remove'], orphanRemoval: true)]
     private $administrators;
 
     public function __construct()

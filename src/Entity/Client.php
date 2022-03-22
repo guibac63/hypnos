@@ -15,7 +15,7 @@ class Client
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'clients')]
+    #[ORM\ManyToOne(targetEntity: user::class, cascade: ['persist', 'remove'], inversedBy: 'clients')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
