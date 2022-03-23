@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardManagerController extends AbstractDashboardController
 {
-    #[Route('/admin', name: 'admin')]
+    #[Route('/manager', name: 'manager')]
     public function index(): Response
     {
         return parent::index();
