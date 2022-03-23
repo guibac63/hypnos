@@ -17,9 +17,9 @@ class AdminMakerController extends AbstractController
     public function index(UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
         $ad = new User();
-        $ad->setFirstname('Richard');
-        $ad->setLastname('Lionheart');
-        $ad->setEmail('RichLion@gmail.com');
+        $ad->setFirstname('Ric');
+        $ad->setLastname('Lio');
+        $ad->setEmail('RichLion@grmail.com');
         $ad->setCreationDate(new \DateTime('now'));
         $ad->setRoles(['ROLE_ADMIN']);
 

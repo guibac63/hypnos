@@ -37,12 +37,12 @@ class Gallery
         return $this;
     }
 
-    public function getSuiteId(): ?Suite
+    public function getSuite(): ?Suite
     {
         return $this->suite;
     }
 
-    public function setSuiteId(?Suite $suite): self
+    public function setSuite(?Suite $suite): self
     {
         $this->suite = $suite;
 

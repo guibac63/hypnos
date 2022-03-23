@@ -32,12 +32,12 @@ class Client
         return $this->id;
     }
 
-    public function getUserId(): ?user
+    public function getUser(): ?user
     {
         return $this->user;
     }
 
-    public function setUserId(?user $user): self
+    public function setUser(?user $user): self
     {
         $this->user = $user;
 
@@ -66,8 +66,8 @@ class Client
     {
         if ($this->reservations->removeElement($reservation)) {
             // set the owning side to null (unless already changed)
-            if ($reservation->getClientId() === $this) {
-                $reservation->setClientId(null);
+            if ($reservation->getClient() === $this) {
+                $reservation->setClient(null);
             }
         }
 

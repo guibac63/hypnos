@@ -71,24 +71,24 @@ class Reservation
         return $this;
     }
 
-    public function getSuiteId(): ?Suite
+    public function getSuite(): ?Suite
     {
         return $this->suite;
     }
 
-    public function setSuiteId(?Suite $suite): self
+    public function setSuite(?Suite $suite): self
     {
         $this->suite = $suite;
 
         return $this;
     }
 
-    public function getClientId(): ?Client
+    public function getClient(): ?Client
     {
         return $this->client;
     }
 
-    public function setClientId(?Client $client): self
+    public function setClient(?Client $client): self
     {
         $this->client = $client;
 

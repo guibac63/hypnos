@@ -188,7 +188,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->clients->contains($client)) {
             $this->clients[] = $client;
-            $client->setUserId($this);
+            $client->setUser($this);
         }
 
         return $this;
@@ -198,8 +198,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->clients->removeElement($client)) {
             // set the owning side to null (unless already changed)
-            if ($client->getUserId() === $this) {
-                $client->setUserId(null);
+            if ($client->getUser() === $this) {
+                $client->setUser(null);
             }
         }
 
@@ -218,7 +218,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->managers->contains($manager)) {
             $this->managers[] = $manager;
-            $manager->setUserId($this);
+            $manager->setUser($this);
         }
 
         return $this;
@@ -228,8 +228,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->managers->removeElement($manager)) {
             // set the owning side to null (unless already changed)
-            if ($manager->getUserId() === $this) {
-                $manager->setUserId(null);
+            if ($manager->getUser() === $this) {
+                $manager->setUser(null);
             }
         }
 
@@ -264,5 +264,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->firstName;
     }
 }

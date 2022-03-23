@@ -126,24 +126,24 @@ class Etablissement
         return $this;
     }
 
-    public function getAdminId(): ?Administrator
+    public function getAdmin(): ?Administrator
     {
         return $this->admin;
     }
 
-    public function setAdminId(?Administrator $admin): self
+    public function setAdmin(?Administrator $admin): self
     {
-        $this->admin = $admin_id;
+        $this->admin = $admin;
 
         return $this;
     }
 
-    public function getManagerId(): ?Manager
+    public function getManager(): ?Manager
     {
         return $this->manager;
     }
 
-    public function setManagerId(Manager $manager): self
+    public function setManager(Manager $manager): self
     {
         $this->manager = $manager;
 
@@ -162,7 +162,7 @@ class Etablissement
     {
         if (!$this->suites->contains($suite)) {
             $this->suites[] = $suite;
-            $suite->setEtablissementId($this);
+            $suite->setEtablissement($this);
         }
 
         return $this;
@@ -172,8 +172,8 @@ class Etablissement
     {
         if ($this->suites->removeElement($suite)) {
             // set the owning side to null (unless already changed)
-            if ($suite->getEtablissementId() === $this) {
-                $suite->setEtablissementId(null);
+            if ($suite->getEtablissement() === $this) {
+                $suite->setEtablissement(null);
             }
         }
 

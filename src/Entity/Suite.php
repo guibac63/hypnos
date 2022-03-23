@@ -115,24 +115,24 @@ class Suite
         return $this;
     }
 
-    public function getEtablissementId(): ?Etablissement
+    public function getEtablissement(): ?Etablissement
     {
         return $this->etablissement;
     }
 
-    public function setEtablissementId(?Etablissement $etablissement): self
+    public function setEtablissement(?Etablissement $etablissement): self
     {
         $this->etablissement = $etablissement;
 
         return $this;
     }
 
-    public function getManagerId(): ?Manager
+    public function getManager(): ?Manager
     {
         return $this->manager;
     }
 
-    public function setManagerId(?Manager $manager): self
+    public function setManager(?Manager $manager): self
     {
         $this->manager = $manager;
 
@@ -151,7 +151,7 @@ class Suite
     {
         if (!$this->galleries->contains($gallery)) {
             $this->galleries[] = $gallery;
-            $gallery->setSuiteId($this);
+            $gallery->setSuite($this);
         }
 
         return $this;
@@ -161,8 +161,8 @@ class Suite
     {
         if ($this->galleries->removeElement($gallery)) {
             // set the owning side to null (unless already changed)
-            if ($gallery->getSuiteId() === $this) {
-                $gallery->setSuiteId(null);
+            if ($gallery->getSuite() === $this) {
+                $gallery->setSuite(null);
             }
         }
 
@@ -181,7 +181,7 @@ class Suite
     {
         if (!$this->reservations->contains($reservation)) {
             $this->reservations[] = $reservation;
-            $reservation->setSuiteId($this);
+            $reservation->setSuite($this);
         }
 
         return $this;
@@ -191,8 +191,8 @@ class Suite
     {
         if ($this->reservations->removeElement($reservation)) {
             // set the owning side to null (unless already changed)
-            if ($reservation->getSuiteId() === $this) {
-                $reservation->setSuiteId(null);
+            if ($reservation->getSuite() === $this) {
+                $reservation->setSuite(null);
             }
         }
 

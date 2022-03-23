@@ -5,7 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\Administrator;
 use App\Entity\Manager;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -45,8 +47,10 @@ class DashboardAdminController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Etablissements', 'fa fa-home');
-        yield MenuItem::linkToCrud('Managers', 'fas fa-list', Manager::class);
-        yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
+        //yield MenuItem::linkToCrud('Managers', 'fas fa-list', Manager::class);
+        yield MenuItem::linkToCrud('Managers', 'fas fa-list', User::class);
+        //yield MenuItem::linkToCrud('Managers','fas fa-list', Manager::class);
 
     }
+
 }

@@ -39,24 +39,24 @@ class Manager
         return $this->id;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUserId(?User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getAdminId(): ?Administrator
+    public function getAdmin(): ?Administrator
     {
         return $this->admin;
     }
 
-    public function setAdminId(?Administrator $admin): self
+    public function setAdmin(?Administrator $admin): self
     {
         $this->admin = $admin;
 
@@ -71,8 +71,8 @@ class Manager
     public function setEtablissement(Etablissement $etablissement): self
     {
         // set the owning side of the relation if necessary
-        if ($etablissement->getManagerId() !== $this) {
-            $etablissement->setManagerId($this);
+        if ($etablissement->getManager() !== $this) {
+            $etablissement->setManager($this);
         }
 
         $this->etablissement = $etablissement;
@@ -92,7 +92,7 @@ class Manager
     {
         if (!$this->suites->contains($suite)) {
             $this->suites[] = $suite;
-            $suite->setManagerId($this);
+            $suite->setManager($this);
         }
 
         return $this;
@@ -102,11 +102,16 @@ class Manager
     {
         if ($this->suites->removeElement($suite)) {
             // set the owning side to null (unless already changed)
-            if ($suite->getManagerId() === $this) {
-                $suite->setManagerId(null);
+            if ($suite->getManager() === $this) {
+                $suite->setManager(null);
             }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->id;
     }
 }
