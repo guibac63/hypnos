@@ -49,10 +49,16 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-
+        //redirect to different pages based on the user role
+        if(in_array('ROLE_ADMIN',$token->getRoleNames())){
+            return new RedirectResponse($this->urlGenerator->generate('admin'));
+        }elseif (in_array('ROLE_MANAGER',$token->getRoleNames())){
+            return new RedirectResponse($this->urlGenerator->generate('home'));
+        }else{
+            return new RedirectResponse($this->urlGenerator->generate('home'));
+        }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('home'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
