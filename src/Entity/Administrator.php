@@ -15,55 +15,25 @@ class Administrator
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToMany(mappedBy: 'admin', targetEntity: Manager::class)]
-    private $managers;
-
     #[ORM\OneToMany(mappedBy: 'admin', targetEntity: Etablissement::class)]
     private $etablissements;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'administrators')]
+    #[ORM\OneToOne(inversedBy: 'administrator', targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private $MainUser;
+
+    #[ORM\OneToMany(mappedBy: 'admin', targetEntity: Manager::class, orphanRemoval: true)]
+    private $managers;
 
     public function __construct()
     {
-        $this->managers = new ArrayCollection();
         $this->etablissements = new ArrayCollection();
+        $this->managers = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Manager>
-     */
-    public function getManagers(): Collection
-    {
-        return $this->managers;
-    }
-
-    public function addManager(Manager $manager): self
-    {
-        if (!$this->managers->contains($manager)) {
-            $this->managers[] = $manager;
-            $manager->setAdminId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeManager(Manager $manager): self
-    {
-        if ($this->managers->removeElement($manager)) {
-            // set the owning side to null (unless already changed)
-            if ($manager->getAdminId() === $this) {
-                $manager->setAdminId(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -78,7 +48,7 @@ class Administrator
     {
         if (!$this->etablissements->contains($etablissement)) {
             $this->etablissements[] = $etablissement;
-            $etablissement->setAdminId($this);
+            $etablissement->setAdmin($this);
         }
 
         return $this;
@@ -88,22 +58,54 @@ class Administrator
     {
         if ($this->etablissements->removeElement($etablissement)) {
             // set the owning side to null (unless already changed)
-            if ($etablissement->getAdminId() === $this) {
-                $etablissement->setAdminId(null);
+            if ($etablissement->getAdmin() === $this) {
+                $etablissement->setAdmin(null);
             }
         }
 
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getMainUser(): ?User
     {
-        return $this->user;
+        return $this->MainUser;
     }
 
-    public function setUser(?User $user): self
+    public function setMainUser(User $MainUser): self
     {
-        $this->user = $user;
+        $this->MainUser = $MainUser;
+
+        return $this;
+    }
+
+
+
+    /**
+     * @return Collection<int, Manager>
+     */
+    public function getManagers(): Collection
+    {
+        return $this->managers;
+    }
+
+    public function addManager(Manager $manager): self
+    {
+        if (!$this->managers->contains($manager)) {
+            $this->managers[] = $manager;
+            $manager->setAdmin($this);
+        }
+
+        return $this;
+    }
+
+    public function removeManager(Manager $manager): self
+    {
+        if ($this->managers->removeElement($manager)) {
+            // set the owning side to null (unless already changed)
+            if ($manager->getAdmin() === $this) {
+                $manager->setAdmin(null);
+            }
+        }
 
         return $this;
     }

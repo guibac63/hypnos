@@ -42,8 +42,9 @@ class UserCrudController extends AbstractCrudController
 
             //filter data displayed in the index with a query: the Administrator can only access to the users with the 'ROLE_MANAGER'
             $qb = $this->container->get(\EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
-            $qb->andWhere('entity.roles IN (:roleManager)')
+            $qb->andWhere(':roleManager IN (entity.roles)')
             ->setParameter('roleManager',$role);
+            dd($qb->getQuery());
             return $qb;
         }
 

@@ -15,19 +15,19 @@ class Manager
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: User::class,cascade: ['persist', 'remove'], inversedBy: 'managers')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $user;
-
-    #[ORM\ManyToOne(targetEntity: Administrator::class, inversedBy: 'managers')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $admin;
-
     #[ORM\OneToOne(mappedBy: 'manager', targetEntity: Etablissement::class, cascade: ['persist', 'remove'])]
     private $etablissement;
 
     #[ORM\OneToMany(mappedBy: 'manager', targetEntity: Suite::class)]
     private $suites;
+
+    #[ORM\OneToOne(inversedBy: 'manager', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $MainUser;
+
+    #[ORM\ManyToOne(targetEntity: Administrator::class, inversedBy: 'managers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $admin;
 
     public function __construct()
     {
@@ -37,30 +37,6 @@ class Manager
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getAdmin(): ?Administrator
-    {
-        return $this->admin;
-    }
-
-    public function setAdmin(?Administrator $admin): self
-    {
-        $this->admin = $admin;
-
-        return $this;
     }
 
     public function getEtablissement(): ?Etablissement
@@ -106,6 +82,30 @@ class Manager
                 $suite->setManager(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMainUser(): ?User
+    {
+        return $this->MainUser;
+    }
+
+    public function setMainUser(User $MainUser): self
+    {
+        $this->MainUser = $MainUser;
+
+        return $this;
+    }
+
+    public function getAdmin(): ?Administrator
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(?Administrator $admin): self
+    {
+        $this->admin = $admin;
 
         return $this;
     }

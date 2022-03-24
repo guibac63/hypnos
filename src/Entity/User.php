@@ -35,21 +35,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime')]
     private $creation_date;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Client::class,cascade: ['persist', 'remove'], orphanRemoval: true)]
-    private $clients;
+    #[ORM\OneToOne(mappedBy: 'MainUser', targetEntity: Administrator::class, cascade: ['persist', 'remove'])]
+    private $administrator;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Manager::class,cascade: ['persist', 'remove'], orphanRemoval: true)]
-    private $managers;
+    #[ORM\OneToOne(mappedBy: 'MainUser', targetEntity: Client::class, cascade: ['persist', 'remove'])]
+    private $client;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Administrator::class,cascade: ['persist', 'remove'], orphanRemoval: true)]
-    private $administrators;
-
-    public function __construct()
-    {
-        $this->clients = new ArrayCollection();
-        $this->managers = new ArrayCollection();
-        $this->administrators = new ArrayCollection();
-    }
+    #[ORM\OneToOne(mappedBy: 'MainUser', targetEntity: Manager::class, cascade: ['persist', 'remove'])]
+    private $manager;
 
     public function getId(): ?int
     {
@@ -176,92 +169,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Client>
-     */
-    public function getClients(): Collection
+    public function getAdministrator(): ?Administrator
     {
-        return $this->clients;
+        return $this->administrator;
     }
 
-    public function addClient(Client $client): self
+    public function setAdministrator(Administrator $administrator): self
     {
-        if (!$this->clients->contains($client)) {
-            $this->clients[] = $client;
-            $client->setUser($this);
+        // set the owning side of the relation if necessary
+        if ($administrator->getMainUser() !== $this) {
+            $administrator->setMainUser($this);
         }
+
+        $this->administrator = $administrator;
 
         return $this;
     }
 
-    public function removeClient(Client $client): self
+    public function getClient(): ?Client
     {
-        if ($this->clients->removeElement($client)) {
-            // set the owning side to null (unless already changed)
-            if ($client->getUser() === $this) {
-                $client->setUser(null);
-            }
+        return $this->client;
+    }
+
+    public function setClient(Client $client): self
+    {
+        // set the owning side of the relation if necessary
+        if ($client->getMainUser() !== $this) {
+            $client->setMainUser($this);
         }
+
+        $this->client = $client;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Manager>
-     */
-    public function getManagers(): Collection
+    public function getManager(): ?Manager
     {
-        return $this->managers;
+        return $this->manager;
     }
 
-    public function addManager(Manager $manager): self
+    public function setManager(Manager $manager): self
     {
-        if (!$this->managers->contains($manager)) {
-            $this->managers[] = $manager;
-            $manager->setUser($this);
+        // set the owning side of the relation if necessary
+        if ($manager->getMainUser() !== $this) {
+            $manager->setMainUser($this);
         }
 
-        return $this;
-    }
-
-    public function removeManager(Manager $manager): self
-    {
-        if ($this->managers->removeElement($manager)) {
-            // set the owning side to null (unless already changed)
-            if ($manager->getUser() === $this) {
-                $manager->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Administrator>
-     */
-    public function getAdministrators(): Collection
-    {
-        return $this->administrators;
-    }
-
-    public function addAdministrator(Administrator $administrator): self
-    {
-        if (!$this->administrators->contains($administrator)) {
-            $this->administrators[] = $administrator;
-            $administrator->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAdministrator(Administrator $administrator): self
-    {
-        if ($this->administrators->removeElement($administrator)) {
-            // set the owning side to null (unless already changed)
-            if ($administrator->getUser() === $this) {
-                $administrator->setUser(null);
-            }
-        }
+        $this->manager = $manager;
 
         return $this;
     }
