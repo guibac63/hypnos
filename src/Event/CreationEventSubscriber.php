@@ -59,7 +59,7 @@ class CreationEventSubscriber implements EventSubscriberInterface
 
 
         }else{
-            throw new \Exception('cannot save manager data');
+            throw new \Exception('not authorized to create user with role manager');
         }
     }
 

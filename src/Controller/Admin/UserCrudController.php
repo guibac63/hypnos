@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
@@ -30,7 +31,7 @@ class UserCrudController extends AbstractCrudController
 
             TextField::new('firstName'),
             TextField::new('lastName'),
-            TextField::new('email')->hideOnIndex(),
+            EmailField::new('email')->hideOnIndex(),
             TextField::new('password')->hideOnIndex()
         ];
     }
@@ -42,9 +43,9 @@ class UserCrudController extends AbstractCrudController
 
             //filter data displayed in the index with a query: the Administrator can only access to the users with the 'ROLE_MANAGER'
             $qb = $this->container->get(\EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
-            $qb->andWhere(':roleManager IN (entity.roles)')
-            ->setParameter('roleManager',$role);
-            dd($qb->getQuery());
+            $qb->where('entity.roles LIKE :role')
+            ->setParameter('role','%"'.$role.'"%');
+
             return $qb;
         }
 
