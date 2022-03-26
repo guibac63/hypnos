@@ -5,6 +5,7 @@ namespace App\Event;
 use App\Entity\Administrator;
 use App\Entity\Etablissement;
 use App\Entity\Manager;
+use App\Entity\Suite;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
@@ -38,6 +39,7 @@ class CreationEventSubscriber implements EventSubscriberInterface
         $entityInstance = $event->getEntityInstance();
         $administrator = $this->security->getUser()->getAdministrator();
 
+
         //get the role of the current connected user
         $roleToken = $this->security->getUser()->getRoles();
 
@@ -64,7 +66,16 @@ class CreationEventSubscriber implements EventSubscriberInterface
         }elseif($entityInstance instanceof Etablissement){
             $entityInstance->setCreationDate(New \DateTime('now'));
             $entityInstance->setAdmin($administrator);
-        } else{
+
+        }elseif ($entityInstance instanceof Suite){
+            $manager = $this->security->getUser()->getManager();
+            //get the current manager etablissement
+            $managerEtablissement = $manager->getEtablissement();
+            $entityInstance->setCreationDate(New \DateTime('now'));
+            $entityInstance->setManager($manager);
+            $entityInstance->setEtablissement($managerEtablissement);
+        }
+        else{
             throw new \Exception('not authorized to create user with role manager');
         }
     }

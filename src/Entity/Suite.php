@@ -44,7 +44,7 @@ class Suite
     #[ORM\JoinColumn(nullable: false)]
     private $manager;
 
-    #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Gallery::class)]
+    #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Gallery::class,cascade: ['persist'])]
     private $galleries;
 
     #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Reservation::class, orphanRemoval: true)]
@@ -93,7 +93,7 @@ class Suite
         return $this->main_image;
     }
 
-    public function setMainImage(int $main_image): self
+    public function setMainImage(string $main_image): self
     {
         $this->main_image = $main_image;
 

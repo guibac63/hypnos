@@ -6,6 +6,7 @@
 parameters:
     etab_images: /images/etablissements
     suite_images: /images/suites
+    galerie_images: /images/galerie
 
 services:
     # default configuration for services in *this* file
