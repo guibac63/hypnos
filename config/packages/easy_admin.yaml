@@ -11,3 +11,14 @@ easy_admin:
       form:
         fields:
           - { property: 'imageFile', type: 'file' }
+
+    Suite:
+      list:
+        fields:
+          - { property: 'main_image', type: 'image', base_path: '%suite_images%' }
+      show:
+        fields:
+          - { property: 'main_image', type: 'image', base_path: '%suite_images%' }
+      form:
+        fields:
+          - { property: 'imageFile', type: 'file' }

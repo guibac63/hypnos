@@ -6,8 +6,11 @@ use App\Repository\SuiteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: SuiteRepository::class)]
+#[Vich\Uploadable]
 class Suite
 {
     #[ORM\Id]
@@ -21,8 +24,11 @@ class Suite
     #[ORM\Column(type: 'integer')]
     private $price;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'string', length: 255)]
     private $main_image;
+
+    #[Vich\UploadableField(mapping: "suite_images",fileNameProperty: "main_image")]
+    private ?File $imageFile = null;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $link;
@@ -43,6 +49,9 @@ class Suite
 
     #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Reservation::class, orphanRemoval: true)]
     private $reservations;
+
+    #[ORM\Column(type: 'text')]
+    private $description;
 
     public function __construct()
     {
@@ -79,7 +88,7 @@ class Suite
         return $this;
     }
 
-    public function getMainImage(): ?int
+    public function getMainImage(): ?string
     {
         return $this->main_image;
     }
@@ -89,6 +98,24 @@ class Suite
         $this->main_image = $main_image;
 
         return $this;
+    }
+
+    public function setImageFile(File $image = null):void
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->creation_date = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function getLink(): ?string
@@ -195,6 +222,18 @@ class Suite
                 $reservation->setSuite(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
