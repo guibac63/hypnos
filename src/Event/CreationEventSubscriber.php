@@ -11,12 +11,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Security;
 
+
 class CreationEventSubscriber implements EventSubscriberInterface
 {
     private $passwordHasher;
     private $security;
-
-
 
     public function __construct(UserPasswordHasherInterface $passwordHasher,Security $security)
     {
@@ -46,9 +45,11 @@ class CreationEventSubscriber implements EventSubscriberInterface
             $entityInstance->setRoles(['ROLE_MANAGER']);
             $entityInstance->setCreationDate(New \DateTime('now'));
 
-            //call a hash password function to transform and save in bdd crypted password
-            $hashedPassword = $this->hashPassword($entityInstance,$entityInstance->getPassword());
-            $entityInstance->setPassword($hashedPassword);
+            if (preg_match('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^',$entityInstance->getPassword())){
+                //call a hash password function to transform and save in bdd crypted password if password is secure
+                $hashedPassword = $this->hashPassword($entityInstance,$entityInstance->getPassword());
+                $entityInstance->setPassword($hashedPassword);
+            }
 
             //persist in the $manager table the role
             $manager = new Manager();
@@ -69,7 +70,7 @@ class CreationEventSubscriber implements EventSubscriberInterface
         $entityInstance->setCreationDate(New \DateTime('now'));
     }
 
-    private function hashPassword($entityInstance,$stringToHash)
+    private function hashPassword($entityInstance,$stringToHash):string
     {
         return $this->passwordHasher->hashPassword($entityInstance,$stringToHash);
 
