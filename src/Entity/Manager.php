@@ -112,6 +112,6 @@ class Manager
 
     public function __toString()
     {
-        return $this->id;
+        return ($this->getMainUser()->getFirstName().' '.$this->getMainUser()->getLastName());
     }
 }

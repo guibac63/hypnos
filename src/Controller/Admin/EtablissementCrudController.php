@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Etablissement;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -26,6 +27,7 @@ class EtablissementCrudController extends AbstractCrudController
             TextField::new('city'),
             TextEditorField::new('address'),
             TextEditorField::new('description'),
+            AssociationField::new('manager'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
             ImageField::new('image')->setBasePath('/images/etablissements/')->onlyOnIndex(),
 
