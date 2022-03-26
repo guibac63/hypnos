@@ -1,0 +1,13 @@
+# config/packages/easy_admin.yaml
+easy_admin:
+  entities:
+    Etablissement:
+      list:
+        fields:
+          - { property: 'image', type: 'image', base_path: '%etab_images%' }
+      show:
+        fields:
+          - { property: 'image', type: 'image', base_path: '%etab_images%' }
+      form:
+        fields:
+          - { property: 'imageFile', type: 'file' }

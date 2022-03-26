@@ -6,8 +6,11 @@ use App\Repository\EtablissementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: EtablissementRepository::class)]
+#[Vich\Uploadable]
 class Etablissement
 {
     #[ORM\Id]
@@ -29,6 +32,9 @@ class Etablissement
 
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
+
+    #[Vich\UploadableField(mapping: "etab_images",fileNameProperty: "image")]
+    private ?File $imageFile = null;
 
     #[ORM\Column(type: 'datetime')]
     private $creation_date;
@@ -100,6 +106,24 @@ class Etablissement
         $this->description = $description;
 
         return $this;
+    }
+
+    public function setImageFile(File $image = null):void
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->creation_date = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function getImage(): ?string

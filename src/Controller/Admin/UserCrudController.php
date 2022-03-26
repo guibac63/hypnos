@@ -3,9 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Security\Voter\ManagerCreateVoter;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
+
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
@@ -33,6 +31,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Security\Permission;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+
 class UserCrudController extends AbstractCrudController
 {
     public function __construct(private SessionInterface $session)
@@ -52,7 +51,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('firstName'),
             TextField::new('lastName'),
             EmailField::new('email')->hideOnIndex(),
-            TextField::new('password')->hideOnIndex()
+            TextField::new('password')->hideOnIndex()->onlyWhenCreating()
         ];
     }
 
