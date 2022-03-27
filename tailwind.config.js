@@ -9,6 +9,18 @@ module.exports = {
             'Volkorn_Regular':['Volkorn_Regular','Arial'],
             'Volkorn_SemiBold':['Volkorn_SemiBold','Arial']
         },
+        extend: {
+            backgroundImage: {
+                'blue_navy_bg':"url('/public/images/background/solid-navy-blue.jpg')",
+                'blue_concrete_bg':"url('/public/images/background/blue-concrete.jpg')",
+            },
+            colors:{
+                'yellow_hypnos':'#EBE645',
+                'blue_light_hypnos':'#577BC1',
+                'blue_medium_hypnos':'#344CB7',
+                'blue_dark_hypnos':'#03256C',
+            },
+        },
     },
     plugins: [],
 }

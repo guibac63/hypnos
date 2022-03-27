@@ -12,6 +12,9 @@ import AOS from 'aos';
 import './styles/app.css';
 import 'aos/dist/aos.css';
 
+//import toggle menu navbar
+import './toggle.js';
+
 // start the Stimulus application
 import './bootstrap';
 

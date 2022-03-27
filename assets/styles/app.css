@@ -12,9 +12,6 @@
     src: url("/public/fonts/Vollkorn/static/Vollkorn-SemiBold.ttf");
 }
 
-
-
-
 .login-container-small{
     min-height: calc(100vh - 9rem)
 }
@@ -33,7 +30,7 @@
 }
 
 @media screen
-and (max-width: 500px)
+and (max-width: 640px)
 and (min-width: 100px){
     .size-mobile{
         font-size: 12px;
