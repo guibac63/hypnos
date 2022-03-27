@@ -5,8 +5,24 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
+//enable AOS animation library
+import AOS from 'aos';
+
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import 'aos/dist/aos.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+AOS.init = function (param) {
+    
+}
+AOS.init({
+    once:true
+});
+
+//allow utilisation of fontawesome
+require('@fortawesome/fontawesome-free/css/all.min.css');
+require('@fortawesome/fontawesome-free/js/all.js');
+
