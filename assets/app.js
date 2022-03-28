@@ -18,6 +18,8 @@ import './toggle.js';
 // start the Stimulus application
 import './bootstrap';
 
+import './carousel.js';
+
 AOS.init = function (param) {
     
 }
