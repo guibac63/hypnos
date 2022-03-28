@@ -118,5 +118,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="tiny-slider" level="application" />
+    <orderEntry type="library" name="swiffy-slider" level="application" />
   </component>
 </module>
