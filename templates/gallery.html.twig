@@ -1,12 +1,14 @@
 
 <div class="form-widget">
+
         {% for image in field.value %}
+{#            {{dump(image)}};#}
             <a href="#" class="ea-lightbox-thumbnail" data-ea-lightbox-content-selector="#ea-lightbox-{{ image.id }}-1">
-                <img src="{{ vich_uploader_asset(image,"imageFile") }}" class="img-fluid">
+                <img src="https://hypnos63.s3.eu-west-3.amazonaws.com/{{ image.image}}" class="img-fluid">
             </a>
 
             <div id="ea-lightbox-{{ image.id }}-1" class="ea-lightbox">
-                <img src="{{ vich_uploader_asset(image,"imageFile") }}">
+                <img src="https://hypnos63.s3.eu-west-3.amazonaws.com/{{ image.image}}">
             </div>
         {% endfor %}
 </div>

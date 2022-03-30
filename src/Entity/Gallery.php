@@ -40,7 +40,7 @@ class Gallery
         return $this->image;
     }
 
-    public function setImage(string $file): self
+    public function setImage(?string $file): self
     {
         $this->image = $file;
 

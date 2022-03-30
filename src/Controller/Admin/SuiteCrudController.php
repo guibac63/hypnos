@@ -43,7 +43,7 @@ class SuiteCrudController extends AbstractCrudController
             MoneyField::new('price')->setCurrency('EUR'),
             TextField::new('link'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->onlyOnForms(),
-            ImageField::new('main_image')->setBasePath('/images/suites/')->hideOnForm(),
+            ImageField::new('main_image')->setBasePath('https://hypnos63.s3.eu-west-3.amazonaws.com/')->hideOnForm(),
             CollectionField::new('galleries')
                 ->setEntryType(GalleryType::class)
                 ->setFormTypeOption('by_reference',false)

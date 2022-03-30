@@ -1,0 +1,18 @@
+# Read the documentation at https://github.com/thephpleague/flysystem-bundle/blob/master/docs/1-getting-started.md
+flysystem:
+    storages:
+        etablissements.storage:
+            adapter: 'aws'
+            options:
+                client: Aws\S3\S3Client
+                bucket: '%env(string:AWS_BUCKET)%'
+        suites.storage:
+            adapter: 'aws'
+            options:
+                client: Aws\S3\S3Client
+                bucket: '%env(string:AWS_BUCKET)%'
+        galerie.storage:
+            adapter: 'aws'
+            options:
+                client: Aws\S3\S3Client
+                bucket: '%env(string:AWS_BUCKET)%'
