@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: "Volkorn_Regular";
-    src: url("/public/fonts/Vollkorn/static/Vollkorn-regular.ttf");
+    src: url("/public/fonts/Vollkorn/static/Vollkorn-Regular.ttf")format('truetype');
 }
 
 @font-face {
     font-family: "Volkorn_SemiBold";
-    src: url("/public/fonts/Vollkorn/static/Vollkorn-SemiBold.ttf");
+    src: url("/public/fonts/Vollkorn/static/Vollkorn-SemiBold.ttf")format('truetype');
 }
 
 .login-container-small{
