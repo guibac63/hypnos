@@ -17,7 +17,7 @@
 }
 
 .global-container-small{
-    min-height: calc(100vh - 9rem - 9rem)
+    min-height: calc(100vh - 10rem - 10rem)
 }
 
 @media (min-width: 640px) {

@@ -1,23 +1,44 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ include('elements/header.html.twig') }}
-    <main>
-        <div class="swiffy-slider slider-nav-page slider-nav-autoplay slider-indicators-round slider-nav-animation slider-nav-animation-fadein slider-nav-animation-slow" data-slider-nav-autoplay-interval="8000">
-            <ul class="slider-container">
-                <li><img src="https://source.unsplash.com/49b9l_29ceA/2400x900" style="max-width: 100%;height: auto;"></li>
-                <li><img src="https://source.unsplash.com/nKAglN6HBH8/2400x900" style="max-width: 100%;height: auto;"></li>
-                <li><img src="https://source.unsplash.com/E9ZwWcMGzj8/2400x900" style="max-width: 100%;height: auto;"></li>
-            </ul>
+    <main class="global-container-all global-container-small flex flex-col items-center" >
+        <div class="relative">
+            <div class="swiffy-slider slider-nav-page slider-nav-autoplay slider-indicators-round slider-nav-animation slider-nav-animation-fadein slider-nav-animation-slow h-96 sm:h-auto" data-slider-nav-autoplay-interval="8000">
+                <ul class="slider-container h-full">
+                    <li class="h-full"><img class="h-full object-cover" src="https://source.unsplash.com/49b9l_29ceA/2400x900" ></li>
+                    <li class="h-full"><img class="h-full object-cover" src="https://source.unsplash.com/nKAglN6HBH8/2400x900" ></li>
+                    <li class="h-full"><img class="h-full object-cover" src="https://source.unsplash.com/E9ZwWcMGzj8/2400x900" ></li>
+                </ul>
 
-            <button type="button" class="slider-nav"></button>
-            <button type="button" class="slider-nav slider-nav-next"></button>
+                <button type="button" class="slider-nav"></button>
+                <button type="button" class="slider-nav slider-nav-next"></button>
 
-            <div class="slider-indicators">
-                <button class="active"></button>
-                <button></button>
-                <button></button>
+                <div class="slider-indicators">
+                    <button class="active"></button>
+                    <button></button>
+                    <button></button>
+                </div>
+            </div>
+            <div class="flex flex-col items-center absolute z-20 top-1/2 sm:top-20 lg:top-1/4 xl:top-1/2 left-1/2 -translate-x-1/2 pt-10">
+                <h1 class="mb-2 text-white text-center justify text-sm sm:text-md  font-Volkorn_SemiBold flex flex-col items-center  ">
+                <span>
+                    BESOIN D'UN SEJOUR IDEAL ?
+                </span>
+                    <span>
+                    CHOISISSEZ VOTRE FUTURE DESTINATION
+                </span>
+                </h1>
+                <button class="text-xs sm:text-base font-light sm:text-md bg-blue_dark_hypnos border-2 border-white text-white font-open-sans rounded-lg p-2">
+                    <a href="#">DECOUVRIR</a>
+                </button>
             </div>
         </div>
+        <div class="w-3/5 sm:w-2/5 flex flex-col items-center my-16">
+            <h2 class="font-Volkorn_SemiBold sm:text-xl mb-10 text-blue_dark_hypnos text-center">HYPNOS, une chaine d'hôtels proposant des prestations d'exception</h2>
+            <p class="text-center mb-3 font-Volkorn_Regular text-sm sm:text-base">Lorem ipsum dolor sit amet. At tempora voluptas ex tenetur voluptas ea quod dolor. Aut pariatur expedita et impedit Quis rem similique omnis et ratione eius sit internos obcaecati et rerum itaque. Et architecto magni ut praesentium veritatis 33 tenetur unde nam dolore  ut odio quidem. </p>
+            <p class="text-center mb-3 font-Volkorn_Regular text-sm sm:text-base">Est ullam assumenda est vero laudantium sed aliquid laboriosam ex tempore internos. 33 consequatur architecto aut placeat exercitationem eum nihil galisum. </p>
+            <p class="text-center mb-3 font-Volkorn_Regular text-sm sm:text-base">Odit consequuntur ut corporis numquam nam natus aliquid. Ad illum quam ut voluptatibus iste est enim voluptas. Non rerum quasi et sint quia ut enim minus ut quia voluptas. Vel animi suscipit id labore voluptatibus sit dolore placeat qui blanditiis quae sit sint omnis ut modi animi?</p>
+        </div>
     </main>
-
+    {{ include('elements/footer.html.twig') }}
 {% endblock %}
