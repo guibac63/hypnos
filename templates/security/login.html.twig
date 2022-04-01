@@ -3,40 +3,78 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    {{ include('elements/header.html.twig') }}
+    <main class="global-container-all global-container-small flex w-full">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        <div class =" w-full md:w-1/2 border border-blue flex justify-center flex-col items-center font-open-sans font-light ">
+            <form class=" bg-blue_concrete_bg border border-blue flex flex-col items-center text-lg text-white w-5/6 xl:w-3/6" method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3 flex flex-col items-center font-segoe text-sm font-extralight">
+                    <span class="my-2 italic">
+                        You are logged in as {{ app.user.username }}
+                    </span>
+                        <span class="my-2">
+                        <a class="bg-yellow_hypnos border border-blue_dark_hypnos py-1 px-2 rounded-xl text-sm text-blue_dark_hypnos" href="{{ path('app_logout') }}">LOGOUT</a>
+                    </span>
+                    </div>
+                {% endif %}
+
+                <h1 class="h3 my-5 text-lg font-Volkorn_Regular">SE CONNECTER</h1>
+                <div class="flex flex-col m-4">
+                    <label class="mr-8" for="inputEmail">Email</label>
+                    <div class="flex mb-3">
+                        <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
+                            <i class="fa-solid fa-user m-1 text-black"></i>
+                        </span>
+                        <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-lg py-1 font-open-sans" type="email"  value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                    </div>
+                </div>
+                <div class="flex flex-col m-4">
+                    <label for="inputPassword">Password</label>
+                    <div class="flex mb-3 ">
+                        <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
+                            <i class="fa-solid fa-lock m-1 text-black"></i>
+                        </span>
+                        <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-lg py-1 font-open-sans" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    </div>
+                </div>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+                #}
+
+                <button class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_dark_hypnos text-blue_dark_hypnos" type="submit">
+                    CONNECTION
+                </button>
+            </form>
+            <a href="#">
+                <h2 class="text-blue_dark_hypnos font-bold font-open-sans mt-3">
+               <span>
+                  <i class="fa-solid fa-circle-arrow-right text-blue_dark_hypnos"></i>
+               </span >
+                    CREER UN COMPTE
+                </h2>
+            </a>
         </div>
-    {% endif %}
+        <div class ="w-1/2 hidden md:block bg-connect_bg md:bg-cover bg-center opacity-75">
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
         </div>
-    #}
+    </main>
+    {{ include('elements/footer.html.twig') }}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
 {% endblock %}

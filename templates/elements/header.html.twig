@@ -2,7 +2,7 @@
     <div class="bg-blue_concrete_bg bg-cover bg-center bg-no-repeat h-24 sm:h-28 bg-fixed text-xl text-white font-open-sans flex justify-center items-center ">
 
 {#        connection space for mobile#}
-        <a class="sm:hidden flex justify-center items-center" href="">
+        <a class="sm:hidden flex justify-center items-center" href="{{ path('app_login') }}">
             <div class="rounded-full bg-white h-14 w-14 justify-center items-center border-4 border-blue_dark_hypnos flex ">
                 <i class="fa-solid fa-user-lock text-black"></i>
             </div>
@@ -26,7 +26,7 @@
             <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="#">RESERVATION</a>
             <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos"href="#">NOUS CONTACTER</a>
             {#        connection space for desktop#}
-            <a class="hidden sm:flex justify-center items-center absolute top-5 right-7" href="">
+            <a class="hidden sm:flex justify-center items-center absolute top-5 right-7" href="{{ path('app_login') }}">
                 <div class="rounded-full bg-white h-8 w-8 justify-center items-center border-2 border-blue_dark_hypnos flex ">
                     <i class="fa-solid fa-user-lock text-black"></i>
                 </div>
