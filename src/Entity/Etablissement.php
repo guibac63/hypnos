@@ -43,7 +43,7 @@ class Etablissement
     #[ORM\JoinColumn(nullable: false)]
     private $admin;
 
-    #[ORM\OneToOne(inversedBy: 'etablissement', targetEntity: Manager::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'etablissement', targetEntity: Manager::class, cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private $manager;
 
@@ -131,7 +131,7 @@ class Etablissement
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
