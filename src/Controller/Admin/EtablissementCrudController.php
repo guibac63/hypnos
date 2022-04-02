@@ -29,7 +29,7 @@ class EtablissementCrudController extends AbstractCrudController
             TextEditorField::new('description'),
             AssociationField::new('manager'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
-            ImageField::new('image')->setBasePath('/images/etablissements/')->onlyOnIndex(),
+            ImageField::new('image')->setBasePath('https://hypnos63.s3.eu-west-3.amazonaws.com/')->onlyOnIndex(),
 
         ];
     }
