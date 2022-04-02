@@ -1,0 +1,8 @@
+{% for etb in etablissements %}
+    <div class=" w-5/6 sm:w-3/5 lg:w-4/6 xl:w-3/6 border-2 border-blue_dark_hypnos shadow-2xl md:flex my-16" >
+        <div class="md:w-1/2">
+            <img class="h-80 lg:h-96 w-full object-cover" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ etb.image)  }}" >
+        </div>
+        <div class="md:w-1/2">b </div>
+    </div>
+{% endfor %}

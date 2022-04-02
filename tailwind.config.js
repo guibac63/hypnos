@@ -21,6 +21,10 @@ module.exports = {
                 'blue_medium_hypnos':'#344CB7',
                 'blue_dark_hypnos':'#03256C',
             },
+            height:{
+              'home-full': '700px',
+              'home-middle': '450px',
+            },
         },
     },
     plugins: [],

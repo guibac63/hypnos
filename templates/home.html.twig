@@ -2,12 +2,14 @@
 {% block body %}
     {{ include('elements/header.html.twig') }}
     <main class="global-container-all global-container-small flex flex-col items-center" >
-        <div class="relative">
-            <div class="swiffy-slider slider-nav-page slider-nav-autoplay slider-indicators-round slider-nav-animation slider-nav-animation-fadein slider-nav-animation-slow h-96 sm:h-auto" data-slider-nav-autoplay-interval="8000">
+        <div class="relative" >
+            <div class="swiffy-slider slider-nav-page slider-nav-autoplay slider-indicators-round slider-nav-animation slider-nav-animation-fadein slider-nav-animation-slow h-full" data-slider-nav-autoplay-interval="8000">
                 <ul class="slider-container h-full">
-                    <li class="h-full"><img class="h-full object-cover" src="https://source.unsplash.com/49b9l_29ceA/2400x900" ></li>
-                    <li class="h-full"><img class="h-full object-cover" src="https://source.unsplash.com/nKAglN6HBH8/2400x900" ></li>
-                    <li class="h-full"><img class="h-full object-cover" src="https://source.unsplash.com/E9ZwWcMGzj8/2400x900" ></li>
+                    {% for etb in etablissements %}
+                        <li class="w-full h-full"><img class="h-96 sm:h-home-middle xl:h-home-full w-full object-cover" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ etb.image)  }}" ></li>
+                    {% endfor %}
+{#                    <li class="h-full"><img class="h-full object-cover" src="https://source.unsplash.com/nKAglN6HBH8/2400x900" ></li>#}
+{#                    <li class="h-full"><img class="h-full object-cover" src="https://source.unsplash.com/E9ZwWcMGzj8/2400x900" ></li>#}
                 </ul>
 
                 <button type="button" class="slider-nav"></button>
@@ -29,7 +31,7 @@
                 </span>
                 </h1>
                 <button class="text-xs sm:text-base font-light sm:text-md bg-blue_dark_hypnos border-2 border-white text-white font-open-sans rounded-lg p-2">
-                    <a href="#">DECOUVRIR</a>
+                    <a href="{{ path('etablissement') }}">DECOUVRIR</a>
                 </button>
             </div>
         </div>
