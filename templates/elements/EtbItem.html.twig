@@ -1,8 +1,40 @@
 {% for etb in etablissements %}
-    <div class=" w-5/6 sm:w-3/5 lg:w-4/6 xl:w-3/6 border-2 border-blue_dark_hypnos shadow-2xl md:flex my-16" >
-        <div class="md:w-1/2">
-            <img class="h-80 lg:h-96 w-full object-cover" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ etb.image)  }}" >
+    <div class=" w-5/6 sm:w-3/5 lg:w-5/6 xl:w-5/6 border-2 border-blue_dark_hypnos shadow-2xl lg:flex my-16" >
+        <div class="lg:w-1/2">
+            <img class=" w-full object-cover h-96 md:h-home-middle lg:h-home-full" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ etb.image)  }}" >
         </div>
-        <div class="md:w-1/2">b </div>
+        <div class="lg:w-1/2 flex flex-col justify-center items-center px-5 text-justify font-Volkorn_Regular p-8 xl:px-36 ">
+            <h1 class="mb-3 text-blue_dark_hypnos text-xl text-blue_dark_hypnos">{{ etb.name | upper }}</h1>
+            <span class="mb-3"></span>
+            <div class="mb-3 text-center text-blue_medium_hypnos">
+                {{ etb.address | raw  }}
+            </div>
+
+            <div class="mb-3 text-blue_light_hypnos flex">
+                <div class=" rounded-full border-2 border-blue_light_hypnos mr-2 flex items-center justify-center h-12 w-12">
+                    <i class="fa-solid fa-water-ladder"></i>
+                </div>
+                <div class=" rounded-full border-2 border-blue_light_hypnos mr-2 flex items-center justify-center h-12 w-12">
+                    <i class="fa-solid fa-golf-ball-tee"></i>
+                </div>
+                <div class=" rounded-full border-2 border-blue_light_hypnos mr-2 flex items-center justify-center h-12 w-12">
+                    <i class="fa-solid fa-dice"></i>
+                </div>
+                <div class=" rounded-full border-2 border-blue_light_hypnos mr-2 flex items-center justify-center h-12 w-12">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+            </div>
+            <div class="mb-3">
+                {{ etb.description | raw }}
+            </div>
+            <a href="">
+                <button class="bg-blue_dark_hypnos rounded-lg font-open-sans text-white text-sm p-2" >
+                    NOS SUITES
+                </button>
+            </a>
+        </div>
     </div>
 {% endfor %}
+<div class="my-3 text-3xl md:text-xl font-open-sans text-blue_dark_hypnos">
+    {{ knp_pagination_render(etablissements) }}
+</div>
