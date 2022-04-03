@@ -7,61 +7,64 @@
     <main class="global-container-all global-container-small flex w-full">
 
         <div class =" w-full md:w-1/2 border border-blue flex justify-center flex-col items-center font-open-sans font-light ">
-            <form class=" bg-blue_concrete_bg border border-blue flex flex-col items-center text-lg text-white w-5/6 xl:w-3/6" method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
+            <div class ="w-5/6 xl:w-3/6 border-4 border-blue_dark_hypnos p-1">
+                <form class=" bg-blue_concrete_bg flex flex-col items-center text-lg text-white" method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
-                {% if app.user %}
-                    <div class="mb-3 flex flex-col items-center font-segoe text-sm font-extralight">
+                    {% if app.user %}
+                        <div class="mb-3 flex flex-col items-center font-segoe text-sm font-extralight">
                     <span class="my-2 italic">
                         You are logged in as {{ app.user.username }}
                     </span>
-                        <span class="my-2">
+                            <span class="my-2">
                         <a class="bg-yellow_hypnos border border-blue_dark_hypnos py-1 px-2 rounded-xl text-sm text-blue_dark_hypnos" href="{{ path('app_logout') }}">LOGOUT</a>
                     </span>
-                    </div>
-                {% endif %}
+                        </div>
+                    {% endif %}
 
-                <h1 class="h3 my-5 text-lg font-Volkorn_Regular">SE CONNECTER</h1>
-                <div class="flex flex-col m-4">
-                    <label class="mr-8" for="inputEmail">Email</label>
-                    <div class="flex mb-3">
+                    <h1 class="h3 my-5 text-lg font-Volkorn_Regular">SE CONNECTER</h1>
+                    <div class="flex flex-col m-4">
+                        <label class="mr-8" for="inputEmail">Email</label>
+                        <div class="flex mb-3">
                         <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
                             <i class="fa-solid fa-user m-1 text-black"></i>
                         </span>
-                        <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-lg py-1 font-open-sans" type="email"  value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                            <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-base py-1 font-open-sans w-60" type="email"  value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                        </div>
                     </div>
-                </div>
-                <div class="flex flex-col m-4">
-                    <label for="inputPassword">Password</label>
-                    <div class="flex mb-3 ">
+                    <div class="flex flex-col m-4">
+                        <label for="inputPassword">Password</label>
+                        <div class="flex mb-3 ">
                         <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
                             <i class="fa-solid fa-lock m-1 text-black"></i>
                         </span>
-                        <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-lg py-1 font-open-sans" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                            <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-lg py-1 font-open-sans w-60" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                        </div>
                     </div>
-                </div>
 
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
 
-                {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
+                    {#
+                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
-                    </label>
-                </div>
-                #}
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+                    #}
 
-                <button class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_dark_hypnos text-blue_dark_hypnos" type="submit">
-                    CONNECTION
-                </button>
-            </form>
+                    <button class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_dark_hypnos text-blue_dark_hypnos" type="submit">
+                        CONNECTION
+                    </button>
+                </form>
+            </div>
+
             <a href="#">
                 <h2 class="text-blue_dark_hypnos font-bold font-open-sans mt-3">
                <span>

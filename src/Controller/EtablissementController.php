@@ -23,7 +23,7 @@ class EtablissementController extends AbstractController
           3
         );
 
-        return $this->render('etablissement.html.twig',['etablissements'=>$etbPaginated]);
+        return $this->render('etablissement.html.twig',['etablissements'=>$etbPaginated ]);
     }
 
 }
