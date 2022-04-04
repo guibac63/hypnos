@@ -2,36 +2,54 @@
     <div class="bg-blue_concrete_bg bg-cover bg-center bg-no-repeat h-24 sm:h-28 bg-fixed text-xl text-white font-open-sans flex justify-center items-center ">
 
 {#        connection space for mobile#}
-        <a class="sm:hidden flex justify-center items-center" href="{{ path('app_login') }}">
-            <div class="rounded-full bg-white h-14 w-14 justify-center items-center border-4 border-blue_dark_hypnos flex ">
-                <i class="fa-solid fa-user-lock text-black"></i>
-            </div>
-            <h1 CLASS="ml-1 sm:hidden text-sm">MON ESPACE</h1>
-        </a>
+        {% if app.user %}
+            <a class="sm:hidden flex justify-center items-center" href="{{ path('app_login') }}">
+                <div class="rounded-full bg-white h-14 w-14 justify-center items-center border-4 border-blue_dark_hypnos flex ">
+                    <i class="fa-solid fa-user-check text-blue_light_hypnos"></i>
+                </div>
+                <h1 CLASS="ml-1 sm:hidden text-sm">{{ app.user.firstName }} {{ app.user.lastName |first }}.</h1>
+            </a>
+        {% else %}
+            <a class="sm:hidden flex justify-center items-center" href="{{ path('app_login') }}">
+                <div class="rounded-full bg-white h-14 w-14 justify-center items-center border-4 border-blue_dark_hypnos flex ">
+                    <i class="fa-solid fa-user-lock text-black"></i>
+                </div>
+                <h1 CLASS="ml-1 sm:hidden text-sm">MON ESPACE</h1>
+            </a>
+        {% endif %}
 {#        logo for desktop#}
         <div class="rounded-full bg-white h-20 w-20 justify-center items-center border-4 border-blue_dark_hypnos hidden sm:flex">
             {#import hypnos logo created SVG#}
            {{ include('elements/logo.html.twig') }}
         </div>
     </div>
-    <div class="border-b border-blue-900 h-32 sm:h-20 flex justify-center items-center w-screen relative">
+    <div class="border-b border-blue-900 h-32 sm:h-20 flex justify-center items-center relative">
 {#          logo for mobile#}
         <div class="rounded-full bg-white h-20 w-20 justify-center items-center border-4 border-blue_dark_hypnos flex sm:hidden">
             {#import hypnos logo created SVG#}
             {{ include('elements/logo.html.twig') }}
         </div>
         <div class="text-blue_medium_hypnos text-sm justify-around sm:text-xs lg:text-sm sm:w-3/5 xl:w-4/5 hidden sm:flex ">
-            <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="#">ACCUEIL</a>
-            <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="#">NOS ETABLISSEMENTS</a>
+            <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('home') }}">ACCUEIL</a>
+            <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('etablissement') }}">NOS ETABLISSEMENTS</a>
             <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="#">RESERVATION</a>
             <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos"href="#">NOUS CONTACTER</a>
             {#        connection space for desktop#}
-            <a class="hidden sm:flex justify-center items-center absolute top-5 right-7" href="{{ path('app_login') }}">
-                <div class="rounded-full bg-white h-8 w-8 justify-center items-center border-2 border-blue_dark_hypnos flex ">
-                    <i class="fa-solid fa-user-lock text-black"></i>
-                </div>
-                <h1 CLASS="ml-1 hidden md:flex text-xs">MON ESPACE</h1>
-            </a>
+            {% if app.user %}
+                <a class="hidden sm:flex justify-center items-center absolute top-5 right-7" href="{{ path('app_login') }}">
+                    <div class="rounded-full bg-white h-8 w-8 justify-center items-center border-2 border-blue_dark_hypnos flex ">
+                        <i class="fa-solid fa-user-check text-blue_light_hypnos"></i>
+                    </div>
+                    <h1 CLASS="ml-1 hidden md:flex text-xs font-bold">{{ app.user.firstName }} {{ app.user.lastName | first }}.</h1>
+                </a>
+            {% else %}
+                <a class="hidden sm:flex justify-center items-center absolute top-5 right-7" href="{{ path('app_login') }}">
+                    <div class="rounded-full bg-white h-8 w-8 justify-center items-center border-2 border-blue_dark_hypnos flex ">
+                        <i class="fa-solid fa-user-lock text-black"></i>
+                    </div>
+                    <h1 CLASS="ml-1 hidden md:flex text-xs">MON ESPACE</h1>
+                </a>
+            {% endif %}
         </div>
         <div id="hamburger-menu" class=" flex flex-col absolute right-6 top-10 sm:hidden ">
             <i class="fa-solid fa-bars fa-2xl text-blue_dark_hypnos"></i>

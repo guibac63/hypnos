@@ -19,18 +19,17 @@ class AdminMakerController extends AbstractController
         $ad = new User();
         $ad->setFirstname('Ric');
         $ad->setLastname('Lio');
-        $ad->setEmail('RichLion@grmail.com');
         $ad->setCreationDate(new \DateTime('now'));
         $ad->setRoles(['ROLE_ADMIN']);
 
-        $passwordText = 'YourNameIsAdmin@63';
-        $hashedPassword = $passwordHasher->hashPassword($ad,$passwordText);
 
-        $ad->setPassword($hashedPassword);
+
+
+        //$ad->setPassword($hashedPassword);
 
         $admin = new Administrator();
 
-        $ad->addAdministrator($admin);
+        //$ad->addAdministrator($admin);
 
         $entityManager->persist($ad);
         $entityManager->flush();

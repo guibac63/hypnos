@@ -3,7 +3,7 @@
     {{ include('elements/header.html.twig') }}
     <main class="global-container-all global-container-small flex flex-col items-center" >
         <div class="relative" >
-            <div class="swiffy-slider slider-nav-page slider-nav-autoplay slider-indicators-round slider-nav-animation slider-nav-animation-fadein slider-nav-animation-slow h-full" data-slider-nav-autoplay-interval="8000">
+            <div class="swiffy-slider slider-nav-page slider-nav-autoplay slider-indicators-round slider-nav-animation slider-nav-animation-fadein slider-nav-animation-slow h-full" data-slider-nav-autoplay-interval="4000">
                 <ul class="slider-container h-full">
                     {% for etb in etablissements %}
                         <li class="w-full h-full"><img class="h-96 sm:h-home-middle xl:h-home-full w-full object-cover" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ etb.image)  }}" ></li>

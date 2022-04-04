@@ -3,16 +3,17 @@
     {{ include('elements/header.html.twig') }}
     <main class="global-container-all global-container-small flex flex-col items-center w-full" >
         {% for suite in suites %}
-            <div class="w-full flex flex-col items-center my-12">
+            <div data-aos="fade-zoom-in"
+                 data-aos-easing="ease-in-back"
+                 data-aos-delay="50"
+                 data-aos-offset="0" class="w-full flex flex-col items-center my-12">
                 <div class="border border-blue_dark_hypnos w-5/6 sm:w-3/5 h-80 md:h-home-middle xl:h-home-full">
                     <div class="swiffy-slider slider-nav-page slider-indicators-round slider-nav-animation slider-nav-animation-fadein slider-nav-animation-slow h-80 md:h-home-middle xl:h-home-full">
                         <ul class="slider-container h-full">
-                            {% for suite in suites %}
-                                <li class="h-80 md:h-home-middle xl:h-home-full"><img class="object-cover h-80 md:h-home-middle xl:h-home-full w-full" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ suite.mainImage)  }}" ></li>
-                                {% for gallery in suite.galleries %}
-                                    <li class="h-80 md:h-home-middle xl:h-home-full"><img class="object-cover h-80 md:h-home-middle xl:h-home-full w-full" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ gallery.image)  }}" ></li>
-                                {% endfor  %}
-                            {% endfor %}
+                            <li class="h-80 md:h-home-middle xl:h-home-full "><img class="object-cover h-80 md:h-home-middle xl:h-home-full w-full" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ suite.mainImage)  }}" ></li>
+                            {% for gallery in suite.galleries %}
+                                <li class="h-80 md:h-home-middle xl:h-home-full"><img class="object-cover h-80 md:h-home-middle xl:h-home-full w-full" src="{{ asset('https://hypnos63.s3.eu-west-3.amazonaws.com/'~ gallery.image)  }}" ></li>
+                            {% endfor  %}
                         </ul>
 
                         <button type="button" class="slider-nav"></button>
@@ -43,7 +44,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col lg:flex-row items-center lg:justify-between lg:w-full">
-                        <h2 class="font-bold text-lg lg:text-xl">{{ suite.price }}<span> € / par nuit</span></h2>
+                        <h2 class="font-bold text-lg lg:text-xl">{{ suite.price / 100 }}<span> € / par nuit</span></h2>
                         <button class="font-open-sans rounded-lg bg-yellow_hypnos my-3 text-sm p-2 border border-blue_dark_hypnos text-blue_dark_hypnos lg:px-4 lg:text-lg font-bold" type="submit">
                             RESERVER
                         </button>

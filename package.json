@@ -21,11 +21,11 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress",
-        "heroku-postbuild" : "node_modules/.bin/encore production"
+        "heroku-postbuild": "node_modules/.bin/encore production"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.1.1",
-        "aos": "^2.3.4",
+        "aos": "^3.0.0-beta.6",
         "jquery": "^3.6.0",
         "postcss-import": "^14.1.0",
         "swiffy-slider": "^1.5.2"

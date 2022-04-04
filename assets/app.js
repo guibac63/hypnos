@@ -6,11 +6,11 @@
  */
 
 //enable AOS animation library
-import AOS from 'aos';
+
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
-import 'aos/dist/aos.css';
+
 
 //import toggle menu navbar
 import './toggle.js';
@@ -20,9 +20,10 @@ import './bootstrap';
 
 import './carousel.js';
 
-AOS.init = function (param) {
-    
-}
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 AOS.init({
     once:true
 });

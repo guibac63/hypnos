@@ -7,7 +7,7 @@
     <main class="global-container-all global-container-small flex w-full">
 
         <div class =" w-full md:w-1/2 border border-blue flex justify-center flex-col items-center font-open-sans font-light ">
-            <div class ="w-5/6 xl:w-3/6 border-4 border-blue_dark_hypnos p-1">
+            <div class ="w-5/6 xl:w-3/6 border-4 border-blue_light_hypnos p-1">
                 <form class=" bg-blue_concrete_bg flex flex-col items-center text-lg text-white" method="post">
                     {% if error %}
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -65,7 +65,7 @@
                 </form>
             </div>
 
-            <a href="#">
+            <a href={{ path('app_register') }}>
                 <h2 class="text-blue_dark_hypnos font-bold font-open-sans mt-3">
                <span>
                   <i class="fa-solid fa-circle-arrow-right text-blue_dark_hypnos"></i>

@@ -104,7 +104,7 @@ class UserCrudController extends AbstractCrudController
 
 
                 // test password strength : if password is not valid, display flash message for the user
-                if(preg_match('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^',$entityInstance->getPassword())){
+                if(preg_match('^\S*(?=\S{12,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^',$entityInstance->getPassword())){
                     $this->persistEntity($this->container->get('doctrine')->getManagerForClass($context->getEntity()->getFqcn()), $entityInstance);
 
                     $this->container->get('event_dispatcher')->dispatch(new AfterEntityPersistedEvent($entityInstance));
