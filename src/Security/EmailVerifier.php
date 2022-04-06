@@ -6,6 +6,7 @@ use App\Entity\Client;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
@@ -24,6 +25,9 @@ class EmailVerifier
         $this->entityManager = $manager;
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     */
     public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
@@ -40,6 +44,7 @@ class EmailVerifier
         $email->context($context);
 
         $this->mailer->send($email);
+
     }
 
     /**
