@@ -6,17 +6,17 @@
     {{ include('elements/header.html.twig') }}
     <main class="global-container-all global-container-small flex w-full">
 
-        <div class =" w-full md:w-1/2 border border-blue flex justify-center flex-col items-center font-open-sans font-light ">
+        <div class ="relative w-full md:w-1/2 border border-blue flex justify-center flex-col items-center font-open-sans font-light ">
             <div class ="w-5/6 xl:w-3/6 border-4 border-blue_light_hypnos p-1">
                 <form class=" bg-blue_concrete_bg flex flex-col items-center text-lg text-white" method="post">
                     {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        <div class="text-red-700">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
 
                     {% if app.user %}
                         <div class="mb-3 flex flex-col items-center font-segoe text-sm font-extralight">
                     <span class="my-2 italic">
-                        You are logged in as {{ app.user.username }}
+                        Vous êtes connecté en tant que {{ app.user.username }}
                     </span>
                             <span class="my-2">
                         <a class="bg-yellow_hypnos border border-blue_dark_hypnos py-1 px-2 rounded-xl text-sm text-blue_dark_hypnos" href="{{ path('app_logout') }}">LOGOUT</a>
@@ -35,14 +35,16 @@
                         </div>
                     </div>
                     <div class="flex flex-col m-4">
-                        <label for="inputPassword">Password</label>
-                        <div class="flex mb-3 ">
+                        <label for="inputPassword">Mot de passe</label>
+                        <div class="flex mb-1">
                         <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
                             <i class="fa-solid fa-lock m-1 text-black"></i>
                         </span>
                             <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-lg py-1 font-open-sans w-60" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
                         </div>
+                        <div class="text-xs hover:font-bold"><a href="{{ path('app_forgot_password_request')}}">Mot de passe perdu ?</a></div>
                     </div>
+
 
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
@@ -73,6 +75,11 @@
                     CREER UN COMPTE
                 </h2>
             </a>
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="text-red-800 bg-red-200 text-xs absolute bottom-0 px-2 font-bold" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+            <div class="flash-notice text-orange-800 bg-orange-200 text-xs absolute bottom-0 px-2 font-bold"> {{ app.flashes('notice') | first }} </div>
+            <div class="text-green-800 bg-green-200 text-xs absolute bottom-0 px-2 font-bold" role="alert">{{ app.flashes('success') | first }}</div>
         </div>
         <div class ="w-1/2 hidden md:block bg-connect_bg md:bg-cover bg-center opacity-75">
 

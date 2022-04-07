@@ -41,6 +41,7 @@ security:
         - { path: ^/manager,roles: ROLE_MANAGER }
         - { path: ^/client, roles: ROLE_SUBSCRIBER }
 
+
 when@test:
     security:
         password_hashers:

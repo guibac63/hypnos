@@ -1,33 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-        <div class="alert alert-success" role="alert">{{ app.flashes('success') | first }}</div>
+    {{ include('elements/header.html.twig') }}
+    <main class="global-container-all global-container-small flex w-full" >
+        <div class="w-full md:w-1/2 flex justify-center flex-col items-center font-open-sans font-light my-4">
+                <div class="p-2 border-2 border-blue_dark_hypnos w-5/6 xl:w-3/6 flex flex-col items-center font-open-sans shadow-xl">
+                    <h1 class="text-center my-2 font-Volkorn_Regular text-blue_dark_hypnos" >S'INSCRIRE</h1>
+
+                    {% form_theme registrationForm 'tailwind_2_layout.html.twig' %}
+                    {{ form_start(registrationForm,{'attr':{ 'class':'w-5/6'}}) }}
+                    <div>
+                        {{ form_row(registrationForm.firstName,{'label':'Nom'}) }}
+                    </div>
+
+                    {{ form_row(registrationForm.lastName,{'label':'Prénom'}) }}
+
+                    {#        hidden part for the users, but will be scanned by bots    #}
+                    {{ form_row(registrationForm.email) }}
+
+                    <div class="relative">
+                        {{ form_row(registrationForm.hpt63,{'label':'Email'}) }}
+                        <span class="bg-blue_light_hypnos p-1 outline-2 border-blue_light_hypnos h-8 flex justify-center items-center bottom-0 absolute right-0 bottom-0">
+                               <i class="fa-solid fa-user m-1 text-black"></i>
+                        </span>
+                    </div>
+
+                    <div class="relative">
+                        {{ form_row(registrationForm.plainPassword.first, {
+                            label: 'Mot de passe',
+                            attr: { 'class':'mt-1 w-full border border-blue-900 pl-1 h-8 input-form'}
+                        }) }}
+                        <span class="bg-blue_light_hypnos p-1 outline-2 border-blue_light_hypnos h-8 flex justify-center items-center bottom-0 absolute right-0 bottom-0">
+                                <i class="fa-solid fa-lock m-1 text-black"></i>
+                        </span>
+                    </div>
+
+                    <div class="relative">
+                        {{ form_row(registrationForm.plainPassword.second, {
+                            label: 'Répéter le mot de passe',
+                            attr: { 'class':'mt-1 w-full border border-blue-900 h-8 input-form pl-1'}
+                        }) }}
+                        <span class="bg-blue_light_hypnos p-1 outline-2 border-blue_light_hypnos h-8 flex justify-center items-center bottom-0 absolute right-0 bottom-0">
+                                <i class="fa-solid fa-lock m-1 text-black"></i>
+                        </span>
+                    </div>
 
 
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstName) }}
-        {{ form_row(registrationForm.lastName) }}
-        {#        hidden part for the users, but will be scanned by bots    #}
-        {{ form_row(registrationForm.email) }}
-
-        {{ form_row(registrationForm.hpt63,{'label':'Email'}) }}
-    {{ form_row(registrationForm.plainPassword.first, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.plainPassword.second, {
-        label: 'Repeat Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                    <div class="flex justify-center my-1 font-bold">
+                        <a class="italic text-sm text-blue_dark_hypnos" href="#">Consultation des CGU</a>
+                    </div>
+                    {{ form_row(registrationForm.agreeTerms,{'label':'Accepter les conditions d\'utilisation'}) }}
+                    <div class="w-full flex justify-center">
+                        <button type="submit" class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">INSCRIPTION</button>
+                    </div>
+                    {{ form_end(registrationForm) }}
 
 
+                </div>
 
+        </div>
+        <div class="w-1/2 hidden md:block bg-connect_bg md:bg-cover bg-center opacity-75">
+
+        </div>
+    </main>
+    {{ include('elements/footer.html.twig') }}
 {% endblock %}

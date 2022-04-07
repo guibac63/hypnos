@@ -24,6 +24,18 @@ input.email {
     display: none;
 }
 
+.red-form{
+    color: #ea0707;
+}
+
+.label-form {
+    color: #0000b1;
+}
+
+.input-form{
+    background-color: #f9f8ed;
+}
+
 @media (min-width: 640px) {
     .login-container-all{
         min-height: calc(100vh - 5rem)
@@ -32,6 +44,8 @@ input.email {
         min-height: calc(100vh - 9rem - 10rem)
     }
 }
+
+
 
 @media screen
 and (max-width: 640px)

@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Validator\UniqueHoneyMail;
+use App\Validator\UniqueHoneyMailValidator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -48,9 +50,10 @@ class RegistrationFormType extends AbstractType
             ->add('hpt63', EmailType::class,[
                 'mapped' => false,
                 'constraints'=>[
-                    new Email([
-                        'message'=>'Merci de saisir une adresse mail valide'
-                    ])
+//                    new Email([
+//                        'message'=>'Merci de saisir une adresse mail valide'
+//                    ]),
+                    new UniqueHoneyMail()
                 ]
             ])
 

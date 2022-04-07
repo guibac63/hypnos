@@ -3,20 +3,31 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-    <h1>Reset your password</h1>
-
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
-                Enter your email address and we will send you a
-                link to reset your password.
-            </small>
+    <div class="flex flex-col items-center justify-center h-screen">
+        <div class="bg-white mb-4 h-20 w-20 rounded-full border-4 border-blue_dark_hypnos flex justify-center items-center">
+            {{ include('elements/logo.html.twig') }}
         </div>
 
-        <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+        <div class="w-4/5 md:w-3/5 lg:w-2/6 p-4 border border-blue_dark_hypnos ">
+            {% for flash_error in app.flashes('reset_password_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+            <h1 class="text-xl font-bold">Réinitialiser votre mot de passe</h1>
+            {% form_theme requestForm 'tailwind_2_layout.html.twig' %}
+            {{ form_start(requestForm,{'attr':{ 'class':'w-5/6'}}) }}
+            {{ form_row(requestForm.email) }}
+            <div>
+                <small>
+                    Enter your email address and we will send you a
+                    link to reset your password.
+                </small>
+            </div>
+
+            <button class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">Send password reset email</button>
+            {{ form_end(requestForm) }}
+
+        </div>
+    </div>
+
+
 {% endblock %}
