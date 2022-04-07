@@ -9,7 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Mime\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -22,27 +24,36 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstName',TextareaType::class,[
+            ->add('firstName',TextType::class,[
                 'constraints' => [
                     new NotBlank([
                         'message'=>'Merci de saisir un prénom'
                     ])
                 ]
             ])
-            ->add('lastName',TextareaType::class,[
+            ->add('lastName',TextType::class,[
                 'constraints' => [
                     new NotBlank([
                         'message'=>'Merci de saisir un nom'
                     ])
                 ]
             ])
-            ->add('email', EmailType::class,[
+
+            //add this wrong input to catch spam tries
+            ->add('email', EmailType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => ['class' => 'email']])
+
+            ->add('hpt63', EmailType::class,[
+                'mapped' => false,
                 'constraints'=>[
                     new Email([
                         'message'=>'Merci de saisir une adresse mail valide'
                     ])
                 ]
             ])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

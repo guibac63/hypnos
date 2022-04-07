@@ -20,6 +20,10 @@
     min-height: calc(100vh - 10rem - 10rem)
 }
 
+input.email {
+    display: none;
+}
+
 @media (min-width: 640px) {
     .login-container-all{
         min-height: calc(100vh - 5rem)

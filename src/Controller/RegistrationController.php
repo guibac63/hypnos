@@ -39,43 +39,51 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-            $userPasswordHasher->hashPassword(
+
+            //if input email is not empty, it must be a robot, stop the registration process
+            if(!$form->get('email')->getData()){
+
+                // encode the plain password
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+
+                //register user with the true mail completed in hpt63 input
+                $user->setEmail($form->get('hpt63')->getData());
+
+                //get the first and lastname of user
+                $user->setFirstName($form->get('firstName')->getData());
+                $user->setLastName($form->get('lastName')->getData());
+
+                //create the Client part with cascade
+                $client = new Client();
+                $user->setClient($client);
+
+                //defines the role of the new user
+                $user->setRoles(['ROLE_SUBSCRIBER']);
+                $user->setCreationDate(new \DateTime('now'));
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                // generate a signed url and email it to the user
+                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                    (new TemplatedEmail())
+                        ->from(new Address('guibacsoluce@gmail.com', 'Administrateur Hypnos'))
+                        ->to($user->getEmail())
+                        ->subject('Please Confirm your Email')
+                        ->htmlTemplate('registration/confirmation_email.html.twig')
+                );
+                // do anything else you need here, like send an email
+
+                return $userAuthenticator->authenticateUser(
                     $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-
-            //get the first and lastname of user
-            $user->setFirstName($form->get('firstName')->getData());
-            $user->setLastName($form->get('lastName')->getData());
-
-            //create the Client part with cascade
-            $client = new Client();
-            $user->setClient($client);
-
-            //defines the role of the new user
-            $user->setRoles(['ROLE_SUBSCRIBER']);
-            $user->setCreationDate(new \DateTime('now'));
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('guibacsoluce@gmail.com', 'Administrateur Hypnos'))
-                    ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
-            // do anything else you need here, like send an email
-
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+                    $authenticator,
+                    $request
+                );
+            }
         }
 
         return $this->render('registration/register.html.twig', [

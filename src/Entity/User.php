@@ -15,13 +15,20 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
+
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
+
+    //value who will get the real mail value for customer registration
+    #[Assert\Email(message: 'The email {{ value }} is not a valid email.',)]
+    private $hpt63;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
