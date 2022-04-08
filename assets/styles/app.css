@@ -32,6 +32,10 @@ input.email {
     color: #0000b1;
 }
 
+.label-reserve-form {
+    color: white;
+}
+
 .input-form{
     background-color: #f9f8ed;
 }

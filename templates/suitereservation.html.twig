@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include('elements/header.html.twig') }}
+    <main class="global-container-all global-container-small flex flex-col items-center justify-center" >
+        <div class="border border-blue_dark_hypnos bg-blue_concrete_bg w-5/6 lg:w-2/6 flex flex-col items-center m-4 shadow-xl">
+            <h1 class="text-white font-Volkorn_Regular m-3">RESERVATION</h1>
+            {% form_theme reservationForm 'tailwind_2_layout-2.html.twig' %}
+            {{ form_start(reservationForm,{'attr':{ 'class':'w-5/6 lg:w-4/6'}}) }}
+            {{ form_row(reservationForm.etablissement) }}
+            {{ form_row(reservationForm.suite) }}
+            {{ form_row(reservationForm.beginning_date , {
+                label: 'Date d\'arrivée',
+                attr: { 'class':'flex w-4/5'}
+            }) }}
+            {{ form_row(reservationForm.ending_date, {
+                label: 'Date d\'arrivée',
+                attr: { 'class':'flex w-4/5'}
+            }) }}
+            {{ form_end(reservationForm) }}
+            <button type="submit" class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">RESERVER</button>
+        </div>
+
+
+    </main>
+    {{ include('elements/footer.html.twig') }}
+{% endblock %}

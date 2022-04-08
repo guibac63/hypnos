@@ -20,13 +20,16 @@ import './bootstrap';
 
 import './carousel.js';
 
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
 
 AOS.init({
     once:true
 });
+
+//reservation js part
+import './suite.js'
 
 //allow utilisation of fontawesome
 require('@fortawesome/fontawesome-free/css/all.min.css');

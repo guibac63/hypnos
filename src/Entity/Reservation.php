@@ -13,6 +13,8 @@ class Reservation
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    private $etablissement;
+
     #[ORM\Column(type: 'date')]
     private $beginning_date;
 
@@ -29,6 +31,7 @@ class Reservation
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
     private $client;
+
 
     public function getId(): ?int
     {

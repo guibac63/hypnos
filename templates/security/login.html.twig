@@ -76,10 +76,10 @@
                 </h2>
             </a>
             {% for flash_error in app.flashes('verify_email_error') %}
-                <div class="text-red-800 bg-red-200 text-xs absolute bottom-0 px-2 font-bold" role="alert">{{ flash_error }}</div>
+                <div class="text-red-800 text-xs absolute bottom-0 px-2 font-bold" role="alert">{{ flash_error }}</div>
             {% endfor %}
-            <div class="flash-notice text-orange-800 bg-orange-200 text-xs absolute bottom-0 px-2 font-bold"> {{ app.flashes('notice') | first }} </div>
-            <div class="text-green-800 bg-green-200 text-xs absolute bottom-0 px-2 font-bold" role="alert">{{ app.flashes('success') | first }}</div>
+            <div class="flash-notice text-orange-800 text-xs absolute bottom-0 px-2 font-bold"> {{ app.flashes('notice') | first }} </div>
+            <div class="text-green-800 text-xs absolute bottom-0 px-2 font-bold" role="alert">{{ app.flashes('success') | first }}</div>
         </div>
         <div class ="w-1/2 hidden md:block bg-connect_bg md:bg-cover bg-center opacity-75">
 
