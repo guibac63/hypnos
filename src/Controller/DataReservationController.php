@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Suite;
 use App\Repository\EtablissementRepository;
+use App\Repository\ReservationRepository;
 use App\Repository\SuiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +32,32 @@ class DataReservationController extends AbstractController
         //dd($dataSuites);
 
         return $this->json(['data'=>$dataSuites]);
+    }
+
+    #[Route('/reservationsuite/{id}', name: 'resa-suite-name')]
+    public function dataSuiteReservation(int $id, ReservationRepository $reservationRepository):Response
+    {
+        //search for data of the selected establishment
+        $data = $reservationRepository->findBy(['suite'=>$id]);
+
+        $dataReservations = [];
+
+
+        //if query return response and reservations for the selected suite, collect data
+        if($data && $data[0]){
+            foreach($data as $reservation){
+                //add one day to correctly displaying interval of reservation in fullcalendar.js
+                $endDate = $reservation->getEndingDate()->format('Y-m-d');
+
+                $dataReservations[] = [
+                    'id'=> $reservation->getId(),
+                    'start'=>$reservation->getBeginningDate()->format('Y-m-d'),
+                    'end'=>date('Y-m-d',strtotime($endDate . ' +1 day'))
+                ];
+            }
+        }
+
+        return $this->json(['data'=>$dataReservations]);
     }
 
 }

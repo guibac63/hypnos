@@ -19,16 +19,20 @@ class ReservationType extends AbstractType
             ->add('etablissement', EntityType::class,[
                 'placeholder' => '--Choix de l\'établissement--',
                 'class'=>Etablissement::class,
-                'mapped'=>false
+                'mapped'=>false,
+                'required'=>true
             ] )
             ->add('suite',ChoiceType::class,[
-                'attr' => ['class' => 'hidden']
+                'attr' => ['class' => 'hidden'],
+                'required'=>true
             ])
             ->add('beginning_date',DateType::class,[
-                'format'=>'dd-MM-yyyy'
+                'widget' => 'single_text',
+                'required'=> true
             ])
             ->add('ending_date',DateType::class,[
-                'format'=>'dd-MM-yyyy'
+                'widget' => 'single_text',
+                'required'=> true
             ])
 //            ->add('client')
         ;

@@ -18,7 +18,11 @@ import './toggle.js';
 // start the Stimulus application
 import './bootstrap';
 
+//js for carousel slide
 import './carousel.js';
+
+//full calendar library
+import './calendar.js';
 
 
 import AOS from 'aos';
