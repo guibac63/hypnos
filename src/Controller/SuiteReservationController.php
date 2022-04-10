@@ -21,7 +21,7 @@ class SuiteReservationController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            dd($reservation);
+
             //even if validation button not showed, add security to verify if the reservator is a subscriber and is mail
             //has been verified
             if(in_array("ROLE_SUBSCRIBER",$security->getUser()->getRoles()) && $security->getUser()->isVerified()){
@@ -30,6 +30,8 @@ class SuiteReservationController extends AbstractController
                 $reservation->setCreationDate(new \DateTime('now'));
                 $entityManager->persist($reservation);
                 $entityManager->flush();
+                $this->addFlash('success', 'Votre réservation vient d\'être confirmée! Vous pouvez à tout moment consulter vos informations dans votre espace personnel' );
+
             }
         }
 

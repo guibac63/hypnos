@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\Suite;
 use App\Repository\EtablissementRepository;
 use App\Repository\ReservationRepository;
-use App\Repository\SuiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class DataReservationController extends AbstractController
 {
@@ -28,8 +28,6 @@ class DataReservationController extends AbstractController
                     ];
             }
         }
-
-        //dd($dataSuites);
 
         return $this->json(['data'=>$dataSuites]);
     }
@@ -52,12 +50,63 @@ class DataReservationController extends AbstractController
                 $dataReservations[] = [
                     'id'=> $reservation->getId(),
                     'start'=>$reservation->getBeginningDate()->format('Y-m-d'),
-                    'end'=>date('Y-m-d',strtotime($endDate . ' +1 day'))
+                    'end'=>date('Y-m-d',strtotime($endDate . ' +1 day')),
+                    'title'=>'réservé',
+
                 ];
             }
         }
 
         return $this->json(['data'=>$dataReservations]);
+    }
+
+    #[Route('/verifReservation/{id}/{date1}/{date2}', name: 'resa-verif')]
+    public function verifReservation (ReservationRepository $reservationRepository,int $id,int $date1,int $date2):Response
+    {
+        //conversion date passed in timestamp param to php valid dates
+        $dateBegin = date("Y-m-d",($date1/1000));
+        $dateBegin = new \DateTime($dateBegin);
+        $dateEnd = date("Y-m-d",($date2/1000));
+        $dateEnd = new \DateTime($dateEnd);
+
+        $dataReservation = $reservationRepository->findBy(['suite'=> $id]);
+
+        //verif 1 :if beginning date <= today
+        $dateBegin <= new \DateTime('now')? $verifOne = false : $verifOne = true;
+
+        //verif 2 : if ending date is in more than one year
+        $dateEnd > new \DateTime(date('Y-m-d',strtotime(' +1 year'))) ? $verifTwo = false : $verifTwo = true;
+
+        //verif 3 : if the purposed dates is in conflict with another reservation, set verif to false
+        $verifThree = true;
+
+        foreach ($dataReservation as $reservation){
+            if ($dateBegin >= $reservation->getBeginningDate() && $dateBegin <=$reservation->getEndingDate()){
+                $verifThree = false;
+            }
+
+            if ($dateEnd >= $reservation->getBeginningDate() && $dateEnd <= $reservation->getEndingDate()){
+                $verifThree = false;
+            }
+            if($dateBegin < $reservation->getBeginningDate() && $dateEnd > $reservation->getEndingDate()){
+                $verifThree = false;
+            }
+        }
+
+        //verif4 : if beginning date is > ending date
+        $dateBegin > $dateEnd ? $verifFour = false : $verifFour = true;
+
+        $verifAll=($verifOne && $verifTwo && $verifThree && $verifFour);
+
+        return $this->json(['data'=>
+            [
+                'verif1'=>$verifOne,
+                'verif2'=>$verifTwo,
+                'verif3'=>$verifThree,
+                'verif4'=>$verifFour,
+                'verifAll'=>$verifAll
+            ]
+        ]);
     }
 
 }

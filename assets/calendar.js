@@ -23,7 +23,6 @@ $(document).ready(function (){
             })
                 .done(function(response){
                     const {data} = response
-                    console.log(data)
                     let calendar = new Calendar(calendarElt, {
                         plugins: [ dayGridPlugin, timeGridPlugin, listPlugin ],
                         initialView: 'dayGridMonth',

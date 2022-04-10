@@ -21,8 +21,7 @@ import './bootstrap';
 //js for carousel slide
 import './carousel.js';
 
-//full calendar library
-import './calendar.js';
+
 
 
 import AOS from 'aos';
@@ -33,7 +32,12 @@ AOS.init({
 });
 
 //reservation js part
-import './suite.js'
+//full calendar library
+import './calendar.js';
+//to load suite options for the selected establishment
+import './suite.js';
+//to allow reservation
+import './reservation.js';
 
 //allow utilisation of fontawesome
 require('@fortawesome/fontawesome-free/css/all.min.css');

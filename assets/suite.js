@@ -10,8 +10,10 @@ $(document).ready(function (){
         const baseUrl = document.location.origin
         let calendarElt = document.getElementById("calendrier");
 
+        //hide the calendar
         calendarElt.classList.add("hidden");
 
+        //if an etablishment is selected
         if(etbId){
 
             //remove all the value that not belong to the selected establishment
@@ -33,7 +35,6 @@ $(document).ready(function (){
 
                     //construction of the new select suite item
                     data.forEach(elt=>{
-                        console.log(elt)
                             suiteSelection.append($("<option></option>")
                                 .attr("value",elt.value).text(elt.text))
                         }
@@ -42,16 +43,13 @@ $(document).ready(function (){
                 .fail(function(error){
                     console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
                 })
-        }else{
-            suiteSelection.slideUp(10);
         }
-
     }
 
-
-        //console.log($("#reservation_etablissement").val())
+    //trigger once the request on loading
     changeSelectSuite();
 
+    // trigger the request on establishment change
    $("#reservation_etablissement").change(function(){
       changeSelectSuite();
    })
