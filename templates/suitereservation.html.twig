@@ -7,7 +7,7 @@
             {% form_theme reservationForm 'tailwind_2_layout-2.html.twig' %}
             {{ form_start(reservationForm,{'attr':{ 'class':'w-full sm:w-4/5 xl:w-full xl:mx-4'}}) }}
             {{ form_row(reservationForm.etablissement,{'attr':{ 'class':'w-full'}}) }}
-            {{ form_row(reservationForm.suite,{'attr':{'class':'mb-4 w-full hidden'}}) }}
+            {{ form_row(reservationForm.suite,{'attr':{'class':'mb-4 w-full'}}) }}
             <div class="bg-white text-xs" id="calendrier"></div>
             {{ form_row(reservationForm.beginning_date , {
                 label: 'Date d\'arrivée',
@@ -17,20 +17,25 @@
                 label: 'Date de départ',
                 attr: { 'class':'flex w-full'}
             }) }}
-            {{ form_end(reservationForm) }}
 
             {% if (app.user)  %}
                 {% if("ROLE_SUBSCRIBER" in app.user.roles ) %}
-                    <button type="submit" class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">RESERVER</button>
+                    <div class="w-full flex justify-center">
+                        <button type="submit" class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">RESERVER</button>
+                    </div>
                 {% else %}
                     <div class="my-8"></div>
                 {% endif %}
-                {% else %}
+            {% else %}
                 <div class="my-4 italic font-light text-white">
                     <span > Vous devez créer un compte utilisateur pour pouvoir réserver, en suivant</span>
                     <a class="text-white text-yellow_hypnos font-bold" href="{{ path('app_register') }}">ce lien</a>
                 </div>
             {% endif %}
+
+            {{ form_end(reservationForm) }}
+
+
         </div>
     </main>
     {{ include('elements/footer.html.twig') }}

@@ -13,6 +13,14 @@ $(document).ready(function (){
         calendarElt.classList.add("hidden");
 
         if(etbId){
+
+            //remove all the value that not belong to the selected establishment
+            $("#reservation_suite option").each(function() {
+                if($(this).val()){
+                    $(this).remove();
+                }
+            });
+
             $.ajax({
                 type:'GET',
                 url: baseUrl + '/datasuitename/'+ etbId,
@@ -21,22 +29,15 @@ $(document).ready(function (){
             })
                 .done(function(response){
 
-                    suiteSelection.html('');
-                    let {data} = response
+                   let {data} = response
 
-                    suiteSelection.append($("<option value selected >--Choix de la suite--</option>"))
                     //construction of the new select suite item
                     data.forEach(elt=>{
+                        console.log(elt)
                             suiteSelection.append($("<option></option>")
                                 .attr("value",elt.value).text(elt.text))
                         }
                     )
-                    console.log(suiteSelection.val(),suiteSelection.text())
-                    if(data.length !== 0){
-                        suiteSelection.slideDown(10);
-                    }else{
-                        suiteSelection.slideUp(10);
-                    }
                 })
                 .fail(function(error){
                     console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
@@ -47,7 +48,11 @@ $(document).ready(function (){
 
     }
 
+
+        //console.log($("#reservation_etablissement").val())
+    changeSelectSuite();
+
    $("#reservation_etablissement").change(function(){
-       changeSelectSuite();
+      changeSelectSuite();
    })
 });
