@@ -18,6 +18,7 @@ class DataReservationController extends AbstractController
         //search for data of the selected establishment
         $data = $etbRepository->findBy(['id'=>$id]);
 
+
         $dataSuites = [];
         //if query return response and establishment get suites, collect data
         if($data && $data[0]->getSuites()){

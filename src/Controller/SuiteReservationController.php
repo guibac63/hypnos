@@ -13,8 +13,8 @@ use Symfony\Component\Security\Core\Security;
 
 class SuiteReservationController extends AbstractController
 {
-    #[Route('/reservation/{idSuite}', name: 'suite-reservation')]
-    public function reservation(Request $request, Security $security,EntityManagerInterface $entityManager,int $idSuite = 0):Response
+    #[Route('/reservation/{idEtb}/{idSuite}', name: 'suite-reservation')]
+    public function reservation(Request $request, Security $security,EntityManagerInterface $entityManager,int $idEtb = 0,int $idSuite = 0):Response
     {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);

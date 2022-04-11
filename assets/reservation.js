@@ -60,8 +60,10 @@ $(document).ready(function (){
     })
 
     //erase error message for a new submission
-    beginInput.addEventListener("click",()=>{
-        verifMessage.innerText = ""
-    })
+    if(beginInput){
+        beginInput.addEventListener("click",()=>{
+            verifMessage.innerText = ""
+        })
+    }
 
 });

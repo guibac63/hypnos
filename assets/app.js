@@ -33,7 +33,7 @@ AOS.init({
 
 //reservation js part
 //full calendar library
-import './calendar.js';
+// import './calendar.js';
 //to load suite options for the selected establishment
 import './suite.js';
 //to allow reservation

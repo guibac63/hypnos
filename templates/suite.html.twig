@@ -45,9 +45,9 @@
                     </div>
                     <div class="flex flex-col lg:flex-row items-center lg:justify-between lg:w-full">
                         <h2 class="font-bold text-lg lg:text-xl">{{ suite.price / 100 }}<span> € / par nuit</span></h2>
-                        <button class="font-open-sans rounded-lg bg-yellow_hypnos my-3 text-sm p-2 border border-blue_dark_hypnos text-blue_dark_hypnos lg:px-4 lg:text-lg font-bold" type="submit">
+                        <a href="{{ path('suite-reservation', {'idEtb':etb,'idSuite': suite.id}) }}" class="font-open-sans rounded-lg bg-yellow_hypnos my-3 text-sm p-2 border border-blue_dark_hypnos text-blue_dark_hypnos lg:px-4 lg:text-lg font-bold">
                             RESERVER
-                        </button>
+                        </a>
                     </div>
 
                 </div>

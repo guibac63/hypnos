@@ -19,6 +19,6 @@ class SuiteController extends AbstractController
         ]);
 
 
-        return $this->render('suite.html.twig',['suites'=>$suiteInfos]);
+        return $this->render('suite.html.twig',['suites'=>$suiteInfos,'etb'=>$idEtab]);
     }
 }
