@@ -32,6 +32,9 @@ class Reservation
     #[ORM\JoinColumn(nullable: false)]
     private $client;
 
+    #[ORM\Column(type: 'boolean')]
+    private $cancelled;
+
 
     public function getId(): ?int
     {
@@ -94,6 +97,18 @@ class Reservation
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCancelled(): ?bool
+    {
+        return $this->cancelled;
+    }
+
+    public function setCancelled(bool $cancelled): self
+    {
+        $this->cancelled = $cancelled;
 
         return $this;
     }

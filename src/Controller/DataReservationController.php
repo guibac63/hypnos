@@ -6,6 +6,7 @@ use App\Entity\Suite;
 use App\Repository\EtablissementRepository;
 use App\Repository\ReservationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +18,6 @@ class DataReservationController extends AbstractController
     {
         //search for data of the selected establishment
         $data = $etbRepository->findBy(['id'=>$id]);
-
 
         $dataSuites = [];
         //if query return response and establishment get suites, collect data
@@ -37,10 +37,9 @@ class DataReservationController extends AbstractController
     public function dataSuiteReservation(int $id, ReservationRepository $reservationRepository):Response
     {
         //search for data of the selected establishment
-        $data = $reservationRepository->findBy(['suite'=>$id]);
+        $data = $reservationRepository->findBy(['suite'=>$id,'cancelled'=>false]);
 
         $dataReservations = [];
-
 
         //if query return response and reservations for the selected suite, collect data
         if($data && $data[0]){
@@ -53,7 +52,6 @@ class DataReservationController extends AbstractController
                     'start'=>$reservation->getBeginningDate()->format('Y-m-d'),
                     'end'=>date('Y-m-d',strtotime($endDate . ' +1 day')),
                     'title'=>'réservé',
-
                 ];
             }
         }
@@ -70,7 +68,7 @@ class DataReservationController extends AbstractController
         $dateEnd = date("Y-m-d",($date2/1000));
         $dateEnd = new \DateTime($dateEnd);
 
-        $dataReservation = $reservationRepository->findBy(['suite'=> $id]);
+        $dataReservation = $reservationRepository->findBy(['suite'=> $id,'cancelled'=> false]);
 
         //verif 1 :if beginning date <= today
         $dateBegin <= new \DateTime('now')? $verifOne = false : $verifOne = true;
@@ -108,6 +106,23 @@ class DataReservationController extends AbstractController
                 'verifAll'=>$verifAll
             ]
         ]);
+    }
+
+    #[Route('/annulReservation', name: 'resa-cancel')]
+    public function cancelReservation (Request $request,ReservationRepository $reservationRepository):Response
+    {
+        //get the selected reservation id by the request data sending onclick button cancel
+        $data = $request->request->get('reservation');
+
+        //find the reservation linked to the ajax request
+        $resaToCancel = $reservationRepository->findOneBy(['id'=>$data]);
+        //change status to cancelled
+        $resaToCancel->setCancelled(true);
+        //update the database
+        $reservationRepository->add($resaToCancel);
+
+
+        return $this->json(['data'=>$data]);
     }
 
 }

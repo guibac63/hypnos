@@ -38,6 +38,9 @@ AOS.init({
 import './suite.js';
 //to allow reservation
 import './reservation.js';
+//to cancel reservation
+import './annulReservation.js';
+
 
 //allow utilisation of fontawesome
 require('@fortawesome/fontawesome-free/css/all.min.css');

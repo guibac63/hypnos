@@ -54,7 +54,9 @@
             </div>
 
         {% endfor %}
-
+        <div class="my-3 text-3xl md:text-xl font-open-sans text-blue_dark_hypnos">
+            {{ knp_pagination_render(suites) }}
+        </div>
     </main>
     {{ include('elements/footer.html.twig') }}
 {% endblock %}

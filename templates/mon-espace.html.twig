@@ -1,7 +1,44 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ include('elements/header.html.twig') }}
-    <main class="global-container-all global-container-small">
+    <main class="global-container-all global-container-small flex w-full">
+        <div class="w-full lg:w-1/2 flex justify-center flex-col items-center font-open-sans font-light my-4 text-blue_dark_hypnos">
+            <i class="fa-solid fa-circle-user h-16"></i>
+            <h1 class="font-bold mt-2">{{ user.firstname }} {{ user.lastname }}</h1>
+            <h2 class="font-bold mt-2">{{user.email}}</h2>
+            <div class="flex flex-col items-center p-8 w-full">
+                <h2 class="font-bold font-Volkorn_Regular" >VOS RESERVATIONS</h2>
+                <h2 class="border border-blue_dark_hypnos w-14 mt-1 font-normal"></h2>
+                {% for userInfo in userInfos %}
+                    <div class="flex w-full bg-blue-100 px-2 rounded  lg:hover:border-b lg:hover:border-t border-blue_light_hypnos mt-4">
+                        <div class="flex flex-col mt-2 w-full">
+                            <div class="flex flex-col w-full">
+                                <div class="flex w-4/5">
+                                    <h1 class="w-full p-1 rounded-lg font-bold text-white bg-blue_medium_hypnos">Réservation n° {{ userInfo.reservations.id }} : {{ userInfo.reservations.suite.etablissement.name }} - suite {{ userInfo.reservations.suite.title }} </h1>
+                                </div>
+                                <div class="flex w-4/5">
+                                    <h1 class="pl-2 w-full text-left font-bold text-sm text-blue_dark_hypnos"> du {{ userInfo.reservations.beginningdate | date('d-m-Y') }} au {{ userInfo.reservations.endingdate | date('d-m-Y') }} </h1>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="elt-{{userInfo.reservations.id }}"  class="left-2 w-1/5 flex justify-end items-center">
+                            {% if userInfo.cancelable and userInfo.reservations.cancelled == false %}
+                                <button id="reservation-{{userInfo.reservations.id }}" type="submit" class="annul-reservation h-7 left-4 rounded-lg bg-yellow_hypnos my-2 px-1 py-2 text-xs py-1 border border-blue_light_hypnos text-blue_dark_hypnos">ANNULER</button>
+                            {% endif %}
+                            {% if userInfo.reservations.cancelled %}
+                                <h1 class="text-xs italic font-bold text-blue_dark_hypnos text-center">Réservation annulée</h1>
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-1/2 hidden lg:block bg-connect_bg md:bg-cover bg-center opacity-75">
+        a
+        </div>
     </main>
     {{ include('elements/footer.html.twig') }}
 {% endblock %}

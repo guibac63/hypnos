@@ -28,6 +28,7 @@ class SuiteReservationController extends AbstractController
 
                 $reservation->setClient($security->getUser()->getClient());
                 $reservation->setCreationDate(new \DateTime('now'));
+                $reservation->setCancelled(false);
                 $entityManager->persist($reservation);
                 $entityManager->flush();
                 $this->addFlash('success', 'Votre réservation vient d\'être confirmée! Vous pouvez à tout moment consulter vos informations dans votre espace personnel' );
