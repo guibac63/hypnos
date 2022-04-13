@@ -10,6 +10,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ContactController extends AbstractController
 {
@@ -30,19 +31,22 @@ class ContactController extends AbstractController
                     ->from($form->get("hpt200")->getData())
                     ->to("guibacsoluce@gmail.com")
                     ->subject($form->get("subject")->getData() ."-".$form->get("hpt200")->getData() )
-                    ->text($form->get("message")->getData());
+                    ->text("De la part de ". $form->get("firstname")->getData() ." ". $form->get("lastname")->getData() ." - ". $form->get("message")->getData());
 
                 $confirmationMail = (new Email())
                     ->from("guibacsoluce@gmail.com")
                     ->to($form->get("hpt200")->getData())
-                    ->subject("Confirmation d'envoi")
-                    ->text("Votre message a bien été envoyé à nos équipes. Nous le traiterons dans les plus brefs délais et 
-                 reprendrons contact avec vous très prochainement");
+                    ->subject("Confirmation d'envoi - demande d'information Hypnos")
+                    ->text("Votre message a bien été envoyé à nos équipes. Nous le traiterons dans les plus brefs délais et reprendrons contact avec vous très prochainement");
+
+                $this->addFlash('success',"Votre message a bien été envoyé. Vous allez recevoir une confirmation d'envoi par email");
 
                 $mailer->send($contactEmail);
                 $mailer->send($confirmationMail);
 
-                $this->addFlash('success',"Votre message a bien été envoyé. Vous allez recevoir une confirmation d'envoi par email");
+                //force reloading page to erase sending inputs
+               return $this->redirectToRoute('contact');
+
             }
 
         }

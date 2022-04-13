@@ -13,7 +13,9 @@ module.exports = {
             backgroundImage: {
                 'blue_navy_bg':"url('/public/images/background/solid-navy-blue.jpg')",
                 'blue_concrete_bg':"url('/public/images/background/blue-concrete.jpg')",
-                'connect_bg':"url('/public/images/background/bg-connect.jpg')",
+                'bg_connect':"url('/public/images/background/bg-connection.jpg')",
+                'bg_contact':"url('/public/images/background/bg-contact.jpg')",
+                'bg_register':"url('/public/images/background/bg-register.jpg')"
             },
             colors:{
                 'yellow_hypnos':'#EBE645',

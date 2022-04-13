@@ -29,7 +29,7 @@
             {{ form_row(contactForm.message,{'label':'Message'}) }}
 
             <div class="flex justify-center my-1 font-bold">
-                <a class="italic text-sm text-blue_dark_hypnos" href="#">Consultation des CGU</a>
+                <a class="italic text-sm text-blue_dark_hypnos hover:text-blue_light_hypnos" href="#">Consultation des CGU</a>
             </div>
 
             {{ form_row(contactForm.conditions,
@@ -44,7 +44,7 @@
         </div>
         <p class="text-green-800 text-base bottom-0 px-2 font-bold text-center h-8 my-2" role="alert">{{ app.flashes('success') | first }}</p>
     </div>
-    <div class="w-1/2 hidden md:block bg-connect_bg md:bg-cover bg-center opacity-75">
+    <div class="w-1/2 hidden md:block bg-bg_register md:bg-cover bg-center">
     </div>
 </main>
 {{ include('elements/footer.html.twig') }}
