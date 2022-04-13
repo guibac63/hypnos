@@ -50,9 +50,6 @@ class RegistrationFormType extends AbstractType
             ->add('hpt63', EmailType::class,[
                 'mapped' => false,
                 'constraints'=>[
-//                    new Email([
-//                        'message'=>'Merci de saisir une adresse mail valide'
-//                    ]),
                     new UniqueHoneyMail()
                 ]
             ])

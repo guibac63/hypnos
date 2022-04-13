@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include('elements/header.html.twig') }}
+<main class="global-container-all global-container-small flex w-full" >
+    <div class=" w-full md:w-1/2 flex justify-center flex-col items-center font-open-sans font-light my-4">
+        <div class="m-2 border-2 border-blue_dark_hypnos w-5/6 xl:w-3/6 flex flex-col items-center font-open-sans shadow-xl">
+            <h1 class="text-center my-2 font-Volkorn_Regular text-blue_dark_hypnos" >NOUS CONTACTER</h1>
+
+            {% form_theme contactForm 'tailwind_2_layout.html.twig' %}
+            {{ form_start(contactForm,{'attr':{ 'class':'w-5/6 text-sm'}}) }}
+            <div>
+                {{ form_row(contactForm.firstname,{'label':'Prénom'}) }}
+            </div>
+
+            {{ form_row(contactForm.lastname,{'label':'Nom'}) }}
+
+{#            hidden part for the users, but will be scanned by bots    #}
+            {{ form_widget(contactForm.email,{"attr":{'class':"hidden"}}) }}
+
+            <div class="relative">
+                {{ form_row(contactForm.hpt200,{'label':'Email'}) }}
+                <span class="bg-blue_light_hypnos p-1 outline-2 border-blue_light_hypnos h-8 flex justify-center items-center bottom-0 absolute right-0 bottom-0">
+                    <i class="fa-solid fa-user m-1 text-black"></i>
+                </span>
+            </div>
+
+            {{ form_row(contactForm.subject,{'label':'Sujet'}) }}
+
+            {{ form_row(contactForm.message,{'label':'Message'}) }}
+
+            <div class="flex justify-center my-1 font-bold">
+                <a class="italic text-sm text-blue_dark_hypnos" href="#">Consultation des CGU</a>
+            </div>
+
+            {{ form_row(contactForm.conditions,
+                {'label':'Accepter les conditions d\'utilisation'},
+                {'attr':{'class':'text-sm'}}
+            ) }}
+
+            <div class="w-full flex justify-center">
+                <button type="submit" class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">ENVOYER</button>
+            </div>
+            {{ form_end(contactForm) }}
+        </div>
+        <p class="text-green-800 text-base bottom-0 px-2 font-bold text-center h-8 my-2" role="alert">{{ app.flashes('success') | first }}</p>
+    </div>
+    <div class="w-1/2 hidden md:block bg-connect_bg md:bg-cover bg-center opacity-75">
+    </div>
+</main>
+{{ include('elements/footer.html.twig') }}
+{% endblock %}

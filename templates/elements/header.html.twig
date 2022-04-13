@@ -60,7 +60,7 @@
             <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('home') }}">ACCUEIL</a>
             <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('etablissement') }}">NOS ETABLISSEMENTS</a>
             <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('suite-reservation') }}">RESERVATION</a>
-            <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="#">NOUS CONTACTER</a>
+            <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('contact') }}">NOUS CONTACTER</a>
             {#        connection space for desktop#}
             {% if app.user %}
                 {% if "ROLE_ADMIN" in app.user.roles %}
@@ -107,7 +107,7 @@
             <a class=" hover:bg-blue-100 border-blue_medium_hypnos p-2" href="{{ path('home') }}">ACCUEIL</a>
             <a class="hover:bg-blue-100 border-blue_medium_hypnos p-2" href="{{ path('etablissement') }}">NOS ETABLISSEMENTS</a>
             <a class="hover:bg-blue-100 border-blue_medium_hypnos p-2" href="{{ path('suite-reservation') }}">RESERVATION</a>
-            <a class="hover:bg-blue-100 border-blue_medium_hypnos p-2" href="#">NOUS CONTACTER</a>
+            <a class="hover:bg-blue-100 border-blue_medium_hypnos p-2" href="{{ path('app_login') }}">NOUS CONTACTER</a>
         </div>
 
     </div>

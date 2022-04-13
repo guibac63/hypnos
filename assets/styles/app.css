@@ -24,6 +24,10 @@ input.email {
     display: none;
 }
 
+#contact_message{
+    height: 8rem;
+}
+
 .red-form{
     color: #ea0707;
 }

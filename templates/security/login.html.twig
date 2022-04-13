@@ -25,16 +25,16 @@
                     {% endif %}
 
                     <h1 class="h3 my-5 text-lg font-Volkorn_Regular">SE CONNECTER</h1>
-                    <div class="flex flex-col m-4">
+                    <div class="flex flex-col m-4 text-sm">
                         <label class="mr-8" for="inputEmail">Email</label>
                         <div class="flex mb-3">
                         <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
                             <i class="fa-solid fa-user m-1 text-black"></i>
                         </span>
-                            <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-base py-1 font-open-sans w-60" type="email"  value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                            <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-sm py-1 font-open-sans w-60" type="email"  value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
                         </div>
                     </div>
-                    <div class="flex flex-col m-4">
+                    <div class="flex flex-col m-4 text-sm">
                         <label for="inputPassword">Mot de passe</label>
                         <div class="flex mb-1">
                         <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
@@ -42,7 +42,7 @@
                         </span>
                             <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-lg py-1 font-open-sans w-60" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
                         </div>
-                        <div class="text-xs hover:font-bold"><a href="{{ path('app_forgot_password_request')}}">Mot de passe perdu ?</a></div>
+                        <div class="text-xs hover:font-bold italic"><a href="{{ path('app_forgot_password_request')}}">Mot de passe perdu ?</a></div>
                     </div>
 
 
