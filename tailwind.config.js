@@ -15,7 +15,8 @@ module.exports = {
                 'blue_concrete_bg':"url('/public/images/background/blue-concrete.jpg')",
                 'bg_connect':"url('/public/images/background/bg-connection.jpg')",
                 'bg_contact':"url('/public/images/background/bg-contact.jpg')",
-                'bg_register':"url('/public/images/background/bg-register.jpg')"
+                'bg_register':"url('/public/images/background/bg-register.jpg')",
+                'bg_space':"url('/public/images/background/bg-space.jpg')"
             },
             colors:{
                 'yellow_hypnos':'#EBE645',
