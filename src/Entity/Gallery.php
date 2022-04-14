@@ -23,7 +23,7 @@ class Gallery
     private ?File $imageFile = null;
 
     #[ORM\ManyToOne(targetEntity: Suite::class, inversedBy: 'galleries')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $suite;
 
     #[ORM\Column(type: 'datetime')]

@@ -49,7 +49,7 @@ class CreationEventSubscriber implements EventSubscriberInterface
             $entityInstance->setRoles(['ROLE_MANAGER']);
             $entityInstance->setCreationDate(New \DateTime('now'));
 
-            if (preg_match('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^',$entityInstance->getPassword())){
+            if (preg_match('^\S*(?=\S{12,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^',$entityInstance->getPassword())){
                 //call a hash password function to transform and save in bdd crypted password if password is secure
                 $hashedPassword = $this->hashPassword($entityInstance,$entityInstance->getPassword());
                 $entityInstance->setPassword($hashedPassword);

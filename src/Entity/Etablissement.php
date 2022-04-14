@@ -43,7 +43,7 @@ class Etablissement
     #[ORM\JoinColumn(nullable: false)]
     private $admin;
 
-    #[ORM\OneToOne(inversedBy: 'etablissement', targetEntity: Manager::class, cascade: ['persist'])]
+    #[ORM\OneToOne(inversedBy: 'etablissement', targetEntity: Manager::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $manager;
 

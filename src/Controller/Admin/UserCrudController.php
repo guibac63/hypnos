@@ -113,7 +113,7 @@ class UserCrudController extends AbstractCrudController
                     return $this->getRedirectResponseAfterSave($context, Action::NEW);
                 }else{
                     $this->session->getFlashbag('')
-                        ->add('danger','Veuillez renseigner un mot de passe valide : minimum 8 caratères, une minuscule, une majuscule, un chiffre');
+                        ->add('danger','Veuillez renseigner un mot de passe valide : minimum 12 caratères, une minuscule, une majuscule, un chiffre');
                 }
             }
 
@@ -190,13 +190,13 @@ class UserCrudController extends AbstractCrudController
                 $this->container->get('event_dispatcher')->dispatch($event);
                 $entityInstance = $event->getEntityInstance();
 
-                if(preg_match('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^',$entityInstance->getPassword())){
+                if(preg_match('^\S*(?=\S{12,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^',$entityInstance->getPassword())){
                     $this->updateEntity($this->container->get('doctrine')->getManagerForClass($context->getEntity()->getFqcn()), $entityInstance);
                     $this->container->get('event_dispatcher')->dispatch(new AfterEntityUpdatedEvent($entityInstance));
                     return $this->getRedirectResponseAfterSave($context, Action::EDIT);
                 }else{
                     $this->session->getFlashbag('')
-                        ->add('danger','Veuillez renseigner un mot de passe valide : minimum 8 caratères, une minuscule, une majuscule, un chiffre');
+                        ->add('danger','Veuillez renseigner un mot de passe valide : minimum 12 caratères, une minuscule, une majuscule, un chiffre');
                 }
             }
 

@@ -15,7 +15,7 @@ class Manager
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToOne(mappedBy: 'manager', targetEntity: Etablissement::class, cascade: ['persist'])]
+    #[ORM\OneToOne(mappedBy: 'manager', targetEntity: Etablissement::class)]
     private $etablissement;
 
     #[ORM\OneToMany(mappedBy: 'manager', targetEntity: Suite::class)]
