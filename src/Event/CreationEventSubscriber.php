@@ -57,18 +57,21 @@ class CreationEventSubscriber implements EventSubscriberInterface
 
             //persist in the $manager table the role
             $manager = new Manager();
-            //add the user id of the creator to Manager object
 
+            //add the user id of the creator to Manager object
             $manager->setAdmin($administrator);
             $entityInstance->setManager($manager);
 
 
         }elseif($entityInstance instanceof Etablissement){
+
             $entityInstance->setCreationDate(New \DateTime('now'));
             $entityInstance->setAdmin($administrator);
 
         }elseif ($entityInstance instanceof Suite){
+
             $manager = $this->security->getUser()->getManager();
+
             //get the current manager etablissement
             $managerEtablissement = $manager->getEtablissement();
             $entityInstance->setCreationDate(New \DateTime('now'));

@@ -62,11 +62,10 @@ class SuiteCrudController extends AbstractCrudController
 
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
-        //define the the id of the establishment managed by the connected user
+        //get the id of the establishment managed by the connected user
         $etablissement = $this->security->getUser()->getManager()->getEtablissement()->getId();
-        //dd($etablissement);
 
-        //filter data displayed in the index with a query: the Administrator can only access to the users with the 'ROLE_MANAGER'
+        //filter data displayed in the index with a query: the user can only access to the suites of the establishment they manage
         $qb = $this->container->get(\EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
         $qb->andWhere(':etablissement = entity.etablissement')
         ->setParameter('etablissement',$etablissement);

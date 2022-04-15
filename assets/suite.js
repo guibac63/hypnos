@@ -11,7 +11,7 @@ $(document).ready(function (){
     const loader = document.getElementById("loader");
 
     //function that make an ajax call to get suites who are linked to etablishments
-    // and add possible options to select item IF no preselection by suite page
+    // and add possible options to select item if no preselection by suite page
     const changeSelectSuite=(evt)=>{
 
         const etbId = $('#reservation_etablissement').val()

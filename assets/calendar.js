@@ -8,6 +8,7 @@ $(document).ready(function (){
 
     const showCalendar = () => {
 
+        //if a suite is selected import full calendar js and make an ajax call to render the reservation in calendar
         const suiteSelection = $("#reservation_suite").val();
         const baseUrl = document.location.origin
         let calendarElt = document.getElementById("calendrier");
@@ -34,12 +35,7 @@ $(document).ready(function (){
                         events:data
                     });
                     calendar.render();
-                    // console.log(suiteSelection.val(),suiteSelection.text())
-                    // if(data.length !== 0){
-                    //     suiteSelection.slideDown(50);
-                    // }else{
-                    //     suiteSelection.slideUp(50);
-                    // }
+
                 })
                 .fail(function(error){
                     console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
@@ -49,6 +45,7 @@ $(document).ready(function (){
         }
     }
 
+    //show the calendar if suite is selected by user
     $("#reservation_suite").change(function(){
         showCalendar();
     })

@@ -28,6 +28,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Security\Permission;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -68,6 +69,7 @@ class UserCrudController extends AbstractCrudController
             return $qb;
         }
 
+        //rewrite the create function to add flash message
         public function new(AdminContext $context)
         {
             $event = new BeforeCrudActionEvent($context);
@@ -134,7 +136,8 @@ class UserCrudController extends AbstractCrudController
         }
 
 
-        public function edit(AdminContext $context)
+
+    public function edit(AdminContext $context)
         {
             $event = new BeforeCrudActionEvent($context);
             $this->container->get('event_dispatcher')->dispatch($event);

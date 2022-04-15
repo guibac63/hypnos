@@ -22,7 +22,7 @@ class SuiteReservationController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
-            //even if validation button not showed, add security to verify if the reservator is a subscriber and is mail
+            //even if validation button not showed, add security to verify if the booker is a subscriber and is mail
             //has been verified
             if(in_array("ROLE_SUBSCRIBER",$security->getUser()->getRoles()) && $security->getUser()->isVerified()){
 

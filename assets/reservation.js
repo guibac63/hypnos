@@ -53,7 +53,6 @@ $(document).ready(function (){
             })
             .fail(function(error){
                 console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
-                evt.preventDefault();
             })
 
 
