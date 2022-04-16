@@ -41,21 +41,20 @@
             </div>
 
             <div class="w-full flex justify-center">
-            {% if (app.user)  %}
-                {% if("ROLE_SUBSCRIBER" in app.user.roles ) %}
-                    <div class="w-full flex justify-center">
-                        <button type="submit" class="rounded-lg bg-yellow_hypnos my-2 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">RESERVER</button>
-                    </div>
+                {% if (app.user)  %}
+                    {% if("ROLE_SUBSCRIBER" in app.user.roles ) %}
+                        <div class="w-full flex justify-center">
+                            <button type="submit" class="rounded-lg bg-yellow_hypnos my-2 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">RESERVER</button>
+                        </div>
+                    {% else %}
+                        <div class="my-8"></div>
+                    {% endif %}
                 {% else %}
-                    <div class="my-8"></div>
+                    <div class="my-4 italic font-light text-white">
+                        <p class="w-full text-center" > Vous devez créer un compte utilisateur pour pouvoir réserver, en suivant <span><a class="text-white text-yellow_hypnos font-bold" href="{{ path('app_register') }}">ce lien</a></span></p>
+                    </div>
                 {% endif %}
-            {% else %}
-                <div class="my-4 italic font-light text-white">
-                    <p class="w-full text-center" > Vous devez créer un compte utilisateur pour pouvoir réserver, en suivant <span><a class="text-white text-yellow_hypnos font-bold" href="{{ path('app_register') }}">ce lien</a></span></p>
-
-                </div>
-            {% endif %}
-
+            </div>
             {{ form_end(reservationForm) }}
         </div>
         <p class="text-green-800 text-base bottom-0 px-2 font-bold text-center h-8 my-2" role="alert">{{ app.flashes('success') | first }}</p>
