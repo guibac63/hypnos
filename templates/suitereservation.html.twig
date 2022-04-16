@@ -4,10 +4,11 @@
     <main class="global-container-all global-container-small flex flex-col items-center justify-center" >
         <div class="border border-blue_dark_hypnos bg-blue_concrete_bg w-5/6 sm:5/6 md:w-4/6 lg:w-3/6 xl:w-2/6 flex flex-col items-center m-4 px-3 shadow-xl">
             <h1 class="text-white font-Volkorn_Regular m-3">RESERVATION</h1>
-            {% form_theme reservationForm 'tailwind_2_layout-2.html.twig' %}
+
             {{ form_start(reservationForm,{'attr':{ 'class':'w-full sm:w-4/5 xl:w-full xl:mx-4 font-light text-sm flex flex-col','id':'reservation'}}) }}
-            {{ form_row(reservationForm.etablissement,{'attr':{ 'class':'w-full'}}) }}
-            {{ form_row(reservationForm.suite,{'attr':{'class':'mb-4 w-full'}}) }}
+
+            {{ form_row(reservationForm.etablissement,{'attr':{ 'class':'w-full outline-0'}}) }}
+            {{ form_row(reservationForm.suite,{'attr':{'class':'mb-4 w-full outline-0'}}) }}
             <div id="loader" class="text-white text-xs flex flex-col items-center justify center hidden">
                 <i class="fa-solid fa-spinner animate-spin fa-xl mb-2"></i>
                 Chargement du calendrier...
@@ -15,21 +16,29 @@
             <div class="bg-white text-xs" id="calendrier"></div>
             {{ form_row(reservationForm.beginning_date , {
                 label: 'Date d\'arrivée',
-                attr: { 'class':'flex w-full'},
+                attr: { 'class':'flex w-full outline-0'},
             }) }}
             {{ form_row(reservationForm.ending_date, {
                 label: 'Date de départ',
-                attr: { 'class':'flex w-full'}
+                attr: { 'class':'flex w-full outline-0'}
             }) }}
 
-            <div class="flex flex-col items-center justify-center my-1 my-3">
+            <div class="flex flex-col items-center justify-center my-1 my-3 text-white">
                 <a class="font-bold italic text-sm text-white hover:text-blue_light_hypnos" href="{{path("app_cgv_cgv")}}">Consultation des CGV</a>
-                {{ form_row(reservationForm.agreeTerms,{'label':'Accepter les CGV'}) }}
             </div>
+
+            <div>
+                {{ form_widget(reservationForm.agreeTerms,{
+                    attr:{ 'class':'w-6'}
+                }) }}
+
+                {{ form_label(reservationForm.agreeTerms,'Accepter les CGV') }}
+            </div>
+
+
             <div>
                 <p class="h-16 mt-2 text-red-700 text-justify" id="verif_case"></p>
             </div>
-
 
             <div class="w-full flex justify-center">
             {% if (app.user)  %}

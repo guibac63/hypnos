@@ -44,6 +44,11 @@ input.email {
     background-color: #f9f8ed;
 }
 
+#reservation label{
+    color:white;
+    margin-bottom: 1rem;
+}
+
 @media (min-width: 640px) {
     .login-container-all{
         min-height: calc(100vh - 5rem)

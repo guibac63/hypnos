@@ -8,9 +8,11 @@
             {{ include('elements/logo.html.twig') }}
         </div>
         <h1 class="m-2">Changer votre mot de passe</h1>
-        {% form_theme resetForm 'tailwind_2_layout.html.twig' %}
         {{ form_start(resetForm) }}
-            {{ form_row(resetForm.plainPassword) }}
+            {{ form_row(resetForm.plainPassword, {
+                label: 'Mot de passe',
+                attr: { 'class':'my-1 w-full border border-blue-900 pl-1 h-8 input-form outline-0'}
+            }) }}
             <button class="w-full rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">Changer mot de passe</button>
         {{ form_end(resetForm) }}
     </div>

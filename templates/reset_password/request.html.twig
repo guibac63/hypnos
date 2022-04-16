@@ -13,17 +13,18 @@
                 <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
             {% endfor %}
             <h1 class="text-xl font-bold">Réinitialiser votre mot de passe</h1>
-            {% form_theme requestForm 'tailwind_2_layout.html.twig' %}
             {{ form_start(requestForm,{'attr':{ 'class':'w-5/6'}}) }}
-            {{ form_row(requestForm.email) }}
+            {{ form_row(requestForm.email,{
+                label:'Email',
+                attr: {'class':'my-1 w-full border border-blue-900 pl-1 h-8 input-form outline-0'}
+            }) }}
             <div>
                 <small>
-                    Enter your email address and we will send you a
-                    link to reset your password.
+                    Entrez votre adresse mail et nous vous enverrons un lien pour changer votre mot de passe
                 </small>
             </div>
 
-            <button class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">Send password reset email</button>
+            <button class="rounded-lg bg-yellow_hypnos my-6 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">Envoyer le mail</button>
             {{ form_end(requestForm) }}
 
         </div>
