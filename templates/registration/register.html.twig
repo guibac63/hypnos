@@ -5,7 +5,7 @@
 {% block body %}
     {{ include('elements/header.html.twig') }}
     <main class="global-container-all global-container-small flex w-full" >
-        <div class="w-full md:w-1/2 flex justify-center flex-col items-center font-open-sans font-light my-4">
+        <div class="relative w-full md:w-1/2 flex justify-center flex-col items-center font-open-sans font-light my-4">
                 <div class="p-2 border-2 border-blue_dark_hypnos w-5/6 xl:w-3/6 flex flex-col items-center font-open-sans shadow-xl">
                     <h1 class="text-center my-2 font-Volkorn_Regular text-blue_dark_hypnos" >S'INSCRIRE</h1>
 
@@ -70,6 +70,7 @@
                     </div>
                     {{ form_end(registrationForm) }}
                 </div>
+            <div class="flash-notice mt-2 text-orange-800 text-base absolute bottom-0 px-2 font-bold"> {{ app.flashes('notice') | first }} </div>
         </div>
         <div class="w-1/2 hidden md:block bg-bg_connect md:bg-cover bg-center">
 
