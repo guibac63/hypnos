@@ -28,7 +28,7 @@ class ContactController extends AbstractController
             //if the honeypot is empty, send message
             if(!$form->get("email")->getData()){
                 $contactEmail = (new Email())
-                    ->from($form->get("hpt200")->getData())
+                    ->from("guibacsoluce@gmail.com")
                     ->to("guibacsoluce@gmail.com")
                     ->subject($form->get("subject")->getData() ."-".$form->get("hpt200")->getData() )
                     ->text("De la part de ". $form->get("firstname")->getData() ." ". $form->get("lastname")->getData() ." - ". $form->get("message")->getData());
