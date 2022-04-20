@@ -82,11 +82,11 @@ class RegistrationController extends AbstractController
                 //allow the user of the sending mail for confirmation
                 $this->addFlash('notice', 'Un mail vient de vous être envoyé (vérifiez vos courriers indésirables). Merci de bien vouloir le consulter et suivre les instructions pour confirmer votre inscription');
 
-//                return $userAuthenticator->authenticateUser(
-//                    $user,
-//                    $authenticator,
-//                    $request
-//                );
+                return $userAuthenticator->authenticateUser(
+                    $user,
+                    $authenticator,
+                    $request
+                );
 
 
             }

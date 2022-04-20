@@ -75,9 +75,17 @@
                 </h2>
             </a>
             {% for flash_error in app.flashes('verify_email_error') %}
-                <div class="text-red-800 text-base absolute bottom-0 px-2 font-bold" role="alert">{{ flash_error }}</div>
+                <div class="text-red-800 text-base absolute bottom-0 px-2 font-bold flex justify-center" role="alert">
+                    <p class="text-center">
+                        {{ flash_error }}
+                    </p>
+                </div>
             {% endfor %}
-            <div class="text-green-800 text-base absolute bottom-0 px-2 font-bold" role="alert">{{ app.flashes('success') | first }}</div>
+            <div class="text-green-800 text-base absolute bottom-0 px-2 font-bold flex justify-center" role="alert">
+                <p class="text-center">
+                    {{ app.flashes('success') | first }}
+                </p>
+            </div>
         </div>
         <div class ="w-1/2 hidden md:block bg-bg_contact md:bg-cover bg-center">
 

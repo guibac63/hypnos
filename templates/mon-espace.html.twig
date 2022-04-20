@@ -2,7 +2,7 @@
 {% block body %}
     {{ include('elements/header.html.twig') }}
     <main class="global-container-all global-container-small flex w-full">
-        <div class="w-full lg:w-1/2 flex justify-center flex-col items-center font-open-sans font-light my-4 text-blue_dark_hypnos">
+        <div class="relative w-full lg:w-1/2 flex justify-center flex-col items-center font-open-sans font-light my-4 text-blue_dark_hypnos">
             <i class="fa-solid fa-circle-user h-16"></i>
             <h1 class="font-bold mt-2">{{ user.firstname }} {{ user.lastname }}</h1>
             <h2 class="font-bold mt-2">{{user.email}}</h2>
@@ -31,10 +31,14 @@
                             {% endif %}
                         </div>
                     </div>
-
-
                 {% endfor %}
             </div>
+            <div class="flash-notice mt-2 text-orange-800 text-base absolute bottom-0 px-2 font-bold flex justify-center">
+                <p class="text-center">
+                    {{ app.flashes('notice') | first }}
+                </p>
+            </div>
+
         </div>
         <div class="w-1/2 hidden lg:block bg-bg_space md:bg-cover bg-center">
 
