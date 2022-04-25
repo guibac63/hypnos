@@ -114,15 +114,19 @@ class DataReservationController extends AbstractController
         //get the selected reservation id by the request data sending onclick button cancel
         $data = $request->request->get('reservation');
 
-        //find the reservation linked to the ajax request
-        $resaToCancel = $reservationRepository->findOneBy(['id'=>$data]);
-        //change status to cancelled
-        $resaToCancel->setCancelled(true);
-        //update the database
-        $reservationRepository->add($resaToCancel);
+        if($data){
 
+            //find the reservation linked to the ajax request
+            $resaToCancel = $reservationRepository->findOneBy(['id'=>$data]);
+            //change status to cancelled
+            $resaToCancel->setCancelled(true);
+            //update the database
+            $reservationRepository->add($resaToCancel);
 
-        return $this->json(['data'=>$data]);
+            return $this->json(['data'=>$data]);
+        }else{
+            throw new \Exception('Impossible to cancel an empty value ');
+        }
     }
 
 }
