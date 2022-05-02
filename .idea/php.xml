@@ -137,5 +137,4 @@
       <path value="$PROJECT_DIR$/vendor/sixlive/dotenv-editor" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
 </project>
