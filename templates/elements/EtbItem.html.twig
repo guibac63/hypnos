@@ -7,7 +7,7 @@
             <h1 class="mb-3 text-blue_dark_hypnos text-xl text-blue_dark_hypnos">{{ etb.name | upper }}</h1>
             <span class="mb-3 border-2 border-yellow_hypnos w-1/6"></span>
             <div class="mb-3 text-center text-blue_medium_hypnos">
-                {{ etb.address | raw  }}
+                {{ etb.address | purify  }}
             </div>
 
             <div class="mb-3 text-blue_light_hypnos flex">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                {{ etb.description | raw }}
+                {{ etb.description | purify }}
             </div>
             <a href="{{ path('suites', {'idEtab': etb.id}) }}">
                 <button class="bg-blue_dark_hypnos rounded-lg font-open-sans text-white text-sm p-2" >
