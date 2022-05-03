@@ -59,6 +59,9 @@ class DataReservationController extends AbstractController
         return $this->json(['data'=>$dataReservations]);
     }
 
+    /**
+     * @throws \Exception
+     */
     #[Route('/verifReservation/{id}/{date1}/{date2}', name: 'resa-verif')]
     public function verifReservation (ReservationRepository $reservationRepository,int $id,int $date1,int $date2):Response
     {

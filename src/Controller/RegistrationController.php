@@ -89,6 +89,8 @@ class RegistrationController extends AbstractController
                 );
 
 
+            }else{
+                throw new \Exception('registration not allowed');
             }
         }
 

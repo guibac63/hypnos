@@ -42,7 +42,7 @@
 
             <div class="w-full flex justify-center">
                 {% if (app.user)  %}
-                    {% if("ROLE_SUBSCRIBER" in app.user.roles ) %}
+                    {% if(is_granted("ROLE_SUBSCRIBER")) %}
                         <div class="w-full flex justify-center">
                             <button type="submit" class="rounded-lg bg-yellow_hypnos my-2 px-2 text-sm py-2 border border-blue_medium_hypnos text-blue_dark_hypnos">RESERVER</button>
                         </div>

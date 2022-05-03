@@ -2,7 +2,7 @@
     <div class="bg-blue_concrete_bg bg-cover bg-center bg-no-repeat h-24 sm:h-28 bg-fixed text-xl text-white font-open-sans flex justify-center items-center ">
 {#        connection space for desktop#}
         {% if app.user %}
-            {% if "ROLE_ADMIN" in app.user.roles  %}
+            {% if is_granted("ROLE_ADMIN")  %}
                 <div class="sm:hidden flex justify-between items-center w-full mx-4">
                     <a class="sm:hidden flex justify-center items-center" href="{{ path('admin') }}">
                         <div class="rounded-full bg-white h-14 w-14 justify-center items-center border-4 border-blue_dark_hypnos flex ">
@@ -13,7 +13,7 @@
                     <a class="sm:hidden text-xs text-white ml-10" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket text-white"></i> DECONNEXION</a>
                 </div>
             {% endif %}
-            {% if  "ROLE_MANAGER" in app.user.roles %}
+            {% if  is_granted("ROLE_MANAGER") %}
                 <div class="sm:hidden flex justify-between items-center w-full mx-4">
                     <a class="sm:hidden flex justify-center items-center" href="{{ path('manager') }}">
                         <div class="rounded-full bg-white h-14 w-14 justify-center items-center border-4 border-blue_dark_hypnos flex ">
@@ -24,7 +24,7 @@
                     <a class="sm:hidden text-xs text-white ml-10" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket text-white"></i> DECONNEXION</a>
                 </div>
             {% endif %}
-            {% if "ROLE_SUBSCRIBER" in app.user.roles %}
+            {% if is_granted("ROLE_SUBSCRIBER") %}
                 <div class="sm:hidden flex justify-between items-center w-full mx-4">
                     <a class="sm:hidden flex justify-center items-center" href="{{ path('my_space') }}">
                         <div class="rounded-full bg-white h-14 w-14 justify-center items-center border-4 border-blue_dark_hypnos flex ">
@@ -63,7 +63,7 @@
             <a class="hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('contact') }}">NOUS CONTACTER</a>
             {#        connection space for mobile#}
             {% if app.user %}
-                {% if "ROLE_ADMIN" in app.user.roles %}
+                {% if is_granted("ROLE_ADMIN") %}
                     <a class="hidden sm:flex justify-center items-center absolute top-5 right-7" href="{{ path('admin') }}">
                         <div class="rounded-full bg-white h-8 w-8 justify-center items-center border-2 border-blue_dark_hypnos flex ">
                             <i class="fa-solid fa-user-check text-blue_light_hypnos"></i>
@@ -71,7 +71,7 @@
                         <h1 CLASS="ml-1 hidden lg:flex text-xs font-bold">{{ app.user.firstName }} {{ app.user.lastName | first }}.</h1>
                     </a>
                     <a class="text-blue_medium_hypnos hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket text-blue_light_hypnos"></i> DECONNEXION</a>
-                {% elseif "ROLE_MANAGER" in app.user.roles %}
+                {% elseif is_granted("ROLE_MANAGER") %}
                     <a class="hidden sm:flex justify-center items-center absolute top-5 right-7" href="{{ path('manager') }}">
                         <div class="rounded-full bg-white h-8 w-8 justify-center items-center border-2 border-blue_dark_hypnos flex ">
                             <i class="fa-solid fa-user-check text-blue_light_hypnos"></i>
@@ -79,7 +79,7 @@
                         <h1 CLASS="ml-1 hidden lg:flex text-xs font-bold">{{ app.user.firstName }} {{ app.user.lastName | first }}.</h1>
                     </a>
                     <a class="text-blue_medium_hypnos hover:scale-110 hover:border-b-2 border-blue_medium_hypnos" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket text-blue_light_hypnos"></i> DECONNEXION</a>
-                {% elseif "ROLE_SUBSCRIBER" in app.user.roles %}
+                {% elseif is_granted("ROLE_SUBSCRIBER") %}
                     <a class="hidden sm:flex justify-center items-center absolute top-5 right-7" href="{{ path('my_space') }}">
                         <div class="rounded-full bg-white h-8 w-8 justify-center items-center border-2 border-blue_dark_hypnos flex ">
                             <i class="fa-solid fa-user-check text-blue_light_hypnos"></i>

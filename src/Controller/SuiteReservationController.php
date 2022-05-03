@@ -24,7 +24,7 @@ class SuiteReservationController extends AbstractController
 
             //even if validation button not showed, add security to verify if the booker is a subscriber and is mail
             //has been verified
-            if(in_array("ROLE_SUBSCRIBER",$security->getUser()->getRoles()) && $security->getUser()->isVerified()){
+            if($this->isGranted('ROLE_MANAGER') && $security->getUser()->isVerified()){
 
                 $reservation->setClient($security->getUser()->getClient());
                 $reservation->setCreationDate(new \DateTime('now'));

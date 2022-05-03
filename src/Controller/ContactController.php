@@ -47,6 +47,8 @@ class ContactController extends AbstractController
                 //force reloading page to erase sending inputs
                return $this->redirectToRoute('contact');
 
+            }else{
+                throw new \Exception('submit error form');
             }
 
         }

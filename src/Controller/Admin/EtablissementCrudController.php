@@ -22,7 +22,6 @@ class EtablissementCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            //IdField::new('id')->onlyOnIndex(),
             TextField::new('name'),
             TextField::new('city'),
             TextEditorField::new('address'),
@@ -30,7 +29,6 @@ class EtablissementCrudController extends AbstractCrudController
             AssociationField::new('manager'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
             ImageField::new('image')->setBasePath('https://hypnos63.s3.eu-west-3.amazonaws.com/')->onlyOnIndex(),
-
         ];
     }
 

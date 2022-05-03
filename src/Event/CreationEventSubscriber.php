@@ -39,13 +39,12 @@ class CreationEventSubscriber implements EventSubscriberInterface
         $entityInstance = $event->getEntityInstance();
         $administrator = $this->security->getUser()->getAdministrator();
 
-
         //get the role of the current connected user
         $roleToken = $this->security->getUser()->getRoles();
 
-        if($entityInstance instanceof User and in_array('ROLE_ADMIN',$roleToken)){
+        if($entityInstance instanceof User and $this->security->isGranted('ROLE_ADMIN')){
 
-            //attribute the manager role and creation date
+            //attributes the manager role and creation date
             $entityInstance->setRoles(['ROLE_MANAGER']);
             $entityInstance->setCreationDate(New \DateTime('now'));
 
@@ -63,12 +62,12 @@ class CreationEventSubscriber implements EventSubscriberInterface
             $entityInstance->setManager($manager);
 
 
-        }elseif($entityInstance instanceof Etablissement){
+        }elseif($entityInstance instanceof Etablissement and $this->security->isGranted('ROLE_ADMIN')){
 
             $entityInstance->setCreationDate(New \DateTime('now'));
             $entityInstance->setAdmin($administrator);
 
-        }elseif ($entityInstance instanceof Suite){
+        }elseif ($entityInstance instanceof Suite and $this->security->isGranted('ROLE_MANAGER')){
 
             $manager = $this->security->getUser()->getManager();
 
@@ -79,7 +78,7 @@ class CreationEventSubscriber implements EventSubscriberInterface
             $entityInstance->setEtablissement($managerEtablissement);
         }
         else{
-            throw new \Exception('not authorized to create user with role manager');
+            throw new \Exception('not authorized to create this entity');
         }
     }
 

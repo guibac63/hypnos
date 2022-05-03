@@ -20,18 +20,21 @@ class ReservationType extends AbstractType
     {
         $builder
             ->add('etablissement', EntityType::class,[
+                'required' => true,
                 'class'=>Etablissement::class,
                 'mapped'=>false,
             ] )
             ->add('suite',EntityType::class,[
+                'required' => true,
                 'placeholder' => '--Choix de la suite--',
                 'class'=>Suite::class
-                //'attr' => ['class' => 'hidden'],
             ])
             ->add('beginning_date',DateType::class,[
+                'required' => true,
                 'widget' => 'single_text',
             ])
             ->add('ending_date',DateType::class,[
+                'required' => true,
                 'widget' => 'single_text',
             ])
             ->add('agreeTerms', CheckboxType::class, [
