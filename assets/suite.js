@@ -57,7 +57,6 @@ $(document).ready(function (){
 
         //remove all the value of the select suite
         if(!suite){
-            console.log(suite)
             $("#reservation_suite option").each(function() {
                 if($(this).val()){
                     $(this).remove();

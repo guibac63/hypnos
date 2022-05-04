@@ -36,11 +36,15 @@
                     </div>
                     <div class="flex flex-col m-4 text-sm">
                         <label for="inputPassword">Mot de passe</label>
-                        <div class="flex mb-1">
-                        <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
-                            <i class="fa-solid fa-lock m-1 text-black"></i>
-                        </span>
+                        <div class="flex mb-1 relative">
+                            <span class="bg-blue_light_hypnos p-1 h-8 flex justify-center items-center">
+                                <i class="fa-solid fa-lock m-1 text-black"></i>
+                            </span>
                             <input class="bg-white outline-0 h-8 text-blue_dark_hypnos px-3 text-lg py-1 font-open-sans w-60" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+                            <span id="eye-password-one" class="absolute right-2 top-2 text-black eye-password">
+                                <i  class="fa-solid fa-eye"></i>
+                            </span>
                         </div>
                         <div class="text-xs hover:font-bold italic"><a href="{{ path('app_forgot_password_request')}}">Mot de passe perdu ?</a></div>
                     </div>

@@ -41,6 +41,8 @@ import './reservation.js';
 //to cancel reservation
 import './annulReservation.js';
 
+//to show/hide password
+import './eye.js';
 
 //allow utilisation of fontawesome
 require('@fortawesome/fontawesome-free/css/all.min.css');
