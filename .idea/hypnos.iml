@@ -138,6 +138,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sixlive/dotenv-editor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ua-parser/uap-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nelmio/security-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/lock" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/rate-limiter" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
