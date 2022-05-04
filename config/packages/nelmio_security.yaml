@@ -4,6 +4,44 @@ nelmio_security:
         paths:
             '^/.*': DENY
 
+    # prevents redirections outside the website's domain
+    external_redirects:
+        abort: true
+        log: true
+
+    # prevents inline scripts, unsafe eval, external scripts/images/styles/frames, etc
+    csp:
+        enabled: true
+        report_logger_service: logger
+        hosts: [ ]
+        content_types: [ ]
+        enforce:
+            # see full description below
+            level1_fallback: true
+            # only send directives supported by the browser, defaults to false
+            # this is a port of https://github.com/twitter/secureheaders/blob/83a564a235c8be1a8a3901373dbc769da32f6ed7/lib/secure_headers/headers/policy_management.rb#L97
+            browser_adaptive:
+                enabled: false
+#            report-uri: '%router.request_context.base_url%/nelmio/csp/report'
+#            default-src: ['self','https://use.fontawesome.com']
+            script-src: ['self']
+            img-src: ['self','https://hypnos63.s3.eu-west-3.amazonaws.com']
+#            style-src: ['self','https://use.fontawesome.com']
+
+
+            block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
+            # upgrade-insecure-requests: true # defaults to false, upgrades HTTP requests to HTTPS transport
+#        report:
+#            # see full description below
+#            level1_fallback: true
+#            # only send directives supported by the browser, defaults to false
+#            # this is a port of https://github.com/twitter/secureheaders/blob/83a564a235c8be1a8a3901373dbc769da32f6ed7/lib/secure_headers/headers/policy_management.rb#L97
+#            browser_adaptive:
+#                enabled: true
+#            report-uri: '%router.request_context.base_url%/nelmio/csp/report'
+#            script-src:
+#                - 'self'
+
     # disables content type sniffing for script resources
     content_type:
         nosniff: true
@@ -24,3 +62,4 @@ nelmio_security:
         policies:
             - 'no-referrer'
             - 'strict-origin-when-cross-origin'
+
