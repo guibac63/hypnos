@@ -20,7 +20,6 @@ class MySpaceController extends AbstractController
         //get the reservations of the connected subscriber
         $userReservations = $user->getClient()->getReservations();
 
-
         $userInfos = [];
 
         foreach ($userReservations as $reservation){
@@ -33,7 +32,6 @@ class MySpaceController extends AbstractController
             $userInfos[] = ["reservations"=>$reservation,"cancelable"=>$cancelable];
 
         }
-
 
         return $this->render('mon-espace.html.twig',["userInfos"=>$userInfos,"user"=>$user]);
     }

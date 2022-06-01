@@ -20,6 +20,7 @@ class SuiteController extends AbstractController
             'etablissement'=>$idEtab
         ]);
 
+        //apply the pagination system with 3 items per page
         $suitePaginated = $paginator->paginate(
             $suiteInfos,
             $request->query->getInt('page',1),

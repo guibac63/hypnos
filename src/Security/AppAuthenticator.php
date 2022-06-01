@@ -48,7 +48,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
         //redirect to different pages based on the user role
         if(in_array('ROLE_ADMIN',$token->getRoleNames())){
             return new RedirectResponse($this->urlGenerator->generate('admin'));
@@ -57,9 +56,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         }elseif (in_array('ROLE_SUBSCRIBER',$token->getRoleNames())) {
             return new RedirectResponse($this->urlGenerator->generate('my_space'));
         }
-
-        // For example:
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

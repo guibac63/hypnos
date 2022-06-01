@@ -30,6 +30,7 @@
         "@fullcalendar/list": "^5.10.1",
         "@fullcalendar/timegrid": "^5.10.1",
         "aos": "^3.0.0-beta.6",
+        "chromedriver": "^101.0.0",
         "jquery": "^3.6.0",
         "postcss-import": "^14.1.0",
         "swiffy-slider": "^1.5.2"

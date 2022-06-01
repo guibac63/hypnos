@@ -26,16 +26,13 @@ $(document).ready(function (){
             if(selectedSuite.length !== 0 && typeof evt === "undefined"){
                 $('#reservation_etablissement option[value="' + selectedSuite[0] +'"]').prop("selected",true);
                 $('#reservation_suite option[value="' + selectedSuite[1] +'"]').prop("selected",true);
-                console.log(evt)
                 searchSuites(selectedSuite[0],selectedSuite[1])
                 showCalendar()
             //if the selection was made by the user
             }else if(typeof evt !== undefined){
-                console.log(evt)
                 searchSuites(etbId)
                 showCalendar()
             }else{
-                console.log(evt)
                 searchSuites(etbId)
             }
         }
@@ -44,11 +41,9 @@ $(document).ready(function (){
     const searchSuites = (etb,suite = 0) => {
         //hide the calendar for every user selection
         calendarElt.classList.add("hidden");
-
         let optionsInSuite = []
-        console.log(suite)
+
         if(suite){
-            console.log(suite)
             //get in array all the values of th suites
            $('#reservation_suite option').each(function(){
                optionsInSuite.push($(this).val())
@@ -68,10 +63,8 @@ $(document).ready(function (){
             type:'GET',
             url: baseUrl + '/datasuitename/'+ etb,
             dataType: "json",
-            //async:false
         })
             .done(function(response){
-
                 let {data} = response
                 //construction of the new select suite item
                 if(!suite){
@@ -85,10 +78,8 @@ $(document).ready(function (){
                     const dataValues = data.map(elt=>
                         (elt.value).toString()
                     )
-
                     //get all the elements that must be removed (suites that no belongs to the selected establishments
                     let difference = optionsInSuite.filter(elt => dataValues.indexOf(elt) === -1 && elt !== "")
-
                     //remove elements from the select suite input
                     difference.forEach(elt=>{
                             $('#reservation_suite option[value="' + elt +'"]').remove()

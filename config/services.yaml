@@ -7,6 +7,7 @@ parameters:
     etab_images: /images/etablissements
     suite_images: /images/suites
     galerie_images: /images/galerie
+    mail_admin: '%env(ADMIN_MAIL)%'
 
 services:
     # default configuration for services in *this* file

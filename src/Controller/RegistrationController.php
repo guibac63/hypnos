@@ -43,7 +43,6 @@ class RegistrationController extends AbstractController
 
             //if input email is not empty, it must be a robot, stop the registration process
             if(!$form->get('email')->getData()){
-
                 // encode the plain password
                 $user->setPassword(
                     $userPasswordHasher->hashPassword(
@@ -72,15 +71,15 @@ class RegistrationController extends AbstractController
                 // generate a signed url and email it to the user
                 $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                     (new TemplatedEmail())
-                        ->from(new Address('guibacsoluce@gmail.com', 'Administrateur Hypnos'))
+                        ->from(new Address($this->getParameter('mail_admin'), 'Administrateur Hypnos'))
                         ->to($user->getEmail())
                         ->subject('Please Confirm your Email')
                         ->htmlTemplate('registration/confirmation_email.html.twig')
                 );
-                // do anything else you need here, like send an email
 
                 //allow the user of the sending mail for confirmation
-                $this->addFlash('notice', 'Un mail vient de vous être envoyé (vérifiez vos courriers indésirables). Merci de bien vouloir le consulter et suivre les instructions pour confirmer votre inscription');
+                $this->addFlash('notice',
+                    'Un mail vient de vous être envoyé (vérifiez vos courriers indésirables). Merci de bien vouloir le consulter et suivre les instructions pour confirmer votre inscription');
 
                 return $userAuthenticator->authenticateUser(
                     $user,

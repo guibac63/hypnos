@@ -127,6 +127,7 @@ class DataReservationController extends AbstractController
             $reservationRepository->add($resaToCancel);
 
             return $this->json(['data'=>$data]);
+
         }else{
             throw new \Exception('Impossible to cancel an empty value ');
         }

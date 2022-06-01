@@ -18,7 +18,6 @@ class EtablissementCrudController extends AbstractCrudController
         return Etablissement::class;
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         return [
