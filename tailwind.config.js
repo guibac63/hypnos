@@ -11,12 +11,12 @@ module.exports = {
         },
         extend: {
             backgroundImage: {
-                'blue_navy_bg':"url('/public/images/background/solid-navy-blue.jpg')",
-                'blue_concrete_bg':"url('/public/images/background/blue-concrete.jpg')",
-                'bg_connect':"url('/public/images/background/bg-connection.jpg')",
-                'bg_contact':"url('/public/images/background/bg-contact.jpg')",
-                'bg_register':"url('/public/images/background/bg-register.jpg')",
-                'bg_space':"url('/public/images/background/bg-space.jpg')"
+                'blue_navy_bg':"url('https://hypnos63.s3.eu-west-3.amazonaws.com/solid-navy-blue.jpg')",
+                'blue_concrete_bg':"url('https://hypnos63.s3.eu-west-3.amazonaws.com/blue-concrete.jpg')",
+                'bg_connect':"url('https://hypnos63.s3.eu-west-3.amazonaws.com/bg-connection.jpg')",
+                'bg_contact':"url('https://hypnos63.s3.eu-west-3.amazonaws.com/bg-contact.jpg')",
+                'bg_register':"url('https://hypnos63.s3.eu-west-3.amazonaws.com/bg-register.jpg')",
+                'bg_space':"url('https://hypnos63.s3.eu-west-3.amazonaws.com/bg-space.jpg')"
             },
             colors:{
                 'yellow_hypnos':'#EBE645',

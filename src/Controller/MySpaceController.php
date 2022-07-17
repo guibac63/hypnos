@@ -23,14 +23,11 @@ class MySpaceController extends AbstractController
         $userInfos = [];
 
         foreach ($userReservations as $reservation){
-
             $beginning = $reservation->getBeginningDate()->format("Y-m-d");;
-
             //rule : can't cancel if reservation is less than three days in the future
-            new \DateTime('now') <= new \DateTime(date('Y-m-d',strtotime($beginning. ' -3 days')))? $cancelable = true: $cancelable = false;
-
+            new \DateTime('now') <= new \DateTime(date('Y-m-d',strtotime($beginning. ' -3 days')))?
+            $cancelable = true: $cancelable = false;
             $userInfos[] = ["reservations"=>$reservation,"cancelable"=>$cancelable];
-
         }
 
         return $this->render('mon-espace.html.twig',["userInfos"=>$userInfos,"user"=>$user]);

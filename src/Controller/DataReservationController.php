@@ -29,7 +29,6 @@ class DataReservationController extends AbstractController
                     ];
             }
         }
-
         return $this->json(['data'=>$dataSuites]);
     }
 
@@ -75,18 +74,15 @@ class DataReservationController extends AbstractController
 
         //verif 1 :if beginning date <= today
         $dateBegin <= new \DateTime('now')? $verifOne = false : $verifOne = true;
-
         //verif 2 : if ending date is in more than one year
         $dateEnd > new \DateTime(date('Y-m-d',strtotime(' +1 year'))) ? $verifTwo = false : $verifTwo = true;
-
-        //verif 3 : if the purposed dates is in conflict with another reservation, set verif to false
+        //verif 3 : if the purposed dates are in conflict with another reservation, set verif to false
         $verifThree = true;
 
         foreach ($dataReservation as $reservation){
             if ($dateBegin >= $reservation->getBeginningDate() && $dateBegin <=$reservation->getEndingDate()){
                 $verifThree = false;
             }
-
             if ($dateEnd >= $reservation->getBeginningDate() && $dateEnd <= $reservation->getEndingDate()){
                 $verifThree = false;
             }

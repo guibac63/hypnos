@@ -56,16 +56,18 @@ class UserCrudController extends AbstractCrudController
         ];
     }
 
-        public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+    /**
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
         {
             //define the role variable
             $role = 'ROLE_MANAGER';
-
             //filter data displayed in the index with a query: the Administrator can only access to the users with the 'ROLE_MANAGER'
             $qb = $this->container->get(\EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
             $qb->where('entity.roles LIKE :role')
             ->setParameter('role','%"'.$role.'"%');
-
             return $qb;
         }
 
